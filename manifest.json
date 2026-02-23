@@ -1,0 +1,20 @@
+{
+  "name": "Choundeshwari Digital & Yashraj Frames",
+  "short_name": "Yashraj Frames",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#c5a059",
+  "icons": [
+    {
+      "src": "https://i.ibb.co/Jj2nV2nq/file-000000004b1c71faa1234d57e0414042.png",
+      "sizes": "192x192",
+      "type": "png"
+    },
+    {
+      "src": "https://i.ibb.co/Jj2nV2nq/file-000000004b1c71faa1234d57e0414042.png",
+      "sizes": "512x512",
+      "type": "png"
+    }
+  ]
+}
