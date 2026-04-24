@@ -19,6 +19,7 @@
         content="Premium custom photo frames & studio services. Open all days 9 AM to 7 PM.">
     <meta property="og:image" content="https://i.ibb.co/Jj2nV2nq/file-000000004b1c71faa1234d57e0414042.png">
     <meta property="og:url" content="https://yashrajframes.netlify.app">
+    <link rel="canonical" href="https://yashrajframes.netlify.app/">
 
     <meta name="google-site-verification" content="-fuAMBVIAFkgi-BxIXn7m9xbFiYGsXoAm5admXaWUwk" />
 
@@ -28,8 +29,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    <link rel="stylesheet" href="styles.css">
     <style>
         :root {
             /* DEFAULT (LIGHT) THEME */
@@ -114,22 +114,52 @@
             box-shadow: var(--shadow);
             transition: 0.3s;
         }
-        .dev-credit-card:hover { transform: translateY(-5px); border-color: var(--accent); }
-        
+
+        @media (hover: hover) {
+            .dev-credit-card:hover {
+                transform: translateY(-5px);
+                border-color: var(--accent);
+            }
+        }
+
+        .dev-credit-card:active {
+            transform: translateY(-2px);
+        }
+
         .dev-glow {
-            position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
             background: radial-gradient(circle, rgba(197, 160, 89, 0.05) 0%, transparent 70%);
             animation: rotateGlow 10s linear infinite;
             pointer-events: none;
         }
-        @keyframes rotateGlow { from { rotate: 0deg; } to { rotate: 360deg; } }
-        
-        .dev-label {
-            font-size: 0.7rem; font-weight: 800; color: var(--secondary);
-            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;
+
+        @keyframes rotateGlow {
+            from {
+                rotate: 0deg;
+            }
+
+            to {
+                rotate: 360deg;
+            }
         }
+
+        .dev-label {
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
         .dev-name {
-            font-size: 1.4rem; font-weight: 900; letter-spacing: 1px;
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: 1px;
             background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
             background-size: 200% auto;
             -webkit-background-clip: text;
@@ -137,15 +167,28 @@
             -webkit-text-fill-color: transparent;
             animation: shineText 3s linear infinite;
         }
-        @keyframes shineText { to { background-position: 200% center; } }
-        
-        .dev-badges {
-            display: flex; justify-content: center; gap: 10px; margin-top: 15px;
+
+        @keyframes shineText {
+            to {
+                background-position: 200% center;
+            }
         }
+
+        .dev-badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
         .dev-badges span {
-            font-size: 0.65rem; font-weight: 700; color: var(--accent);
-            background: rgba(197, 160, 89, 0.1); padding: 5px 12px;
-            border-radius: 20px; text-transform: uppercase;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--accent);
+            background: rgba(197, 160, 89, 0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
         }
 
         * {
@@ -389,8 +432,42 @@
 
         .product-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 15px;
+        }
+
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .product-card .p-name {
+                font-size: 0.85rem;
+            }
+
+            .product-card .p-price {
+                font-size: 0.8rem;
+            }
+        }
+
+        .shop-filter-btn {
+            padding: 8px 16px;
+            background: var(--surface);
+            color: var(--primary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.3s;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .shop-filter-btn.active {
+            background: var(--primary);
+            color: var(--bg);
+            border-color: var(--primary);
         }
 
         .product-card {
@@ -403,7 +480,14 @@
         }
 
         .product-card:active {
-            transform: scale(0.97);
+            transform: scale(0.98);
+        }
+
+        @media (hover: hover) {
+            .product-card:hover {
+                border-color: var(--accent);
+                transform: translateY(-5px);
+            }
         }
 
         .p-img {
@@ -525,6 +609,120 @@
             background: var(--input-bg);
             color: var(--primary);
             border: 1px solid var(--border-color);
+        }
+
+        /* --- OFFLINE SCREEN --- */
+        .offline-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(25px);
+            z-index: 10000;
+            display: none;
+            /* Hidden by default */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .offline-content {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .broken-frame-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 30px;
+        }
+
+        .broken-frame {
+            position: absolute;
+            inset: 0;
+            border: 4px solid var(--primary);
+            border-radius: 15px;
+            box-shadow: 0 0 30px var(--primary);
+            animation: pulse-gold 2s infinite;
+        }
+
+        .offline-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: flicker 3s infinite;
+        }
+
+        .offline-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .offline-text {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .retry-btn {
+            background: linear-gradient(135deg, var(--primary), #D4AF37);
+            color: #000;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 20px rgba(197, 160, 89, 0.3);
+            transition: 0.3s;
+        }
+
+        .retry-btn:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes pulse-gold {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(197, 160, 89, 0.8);
+            }
+        }
+
+        @keyframes flicker {
+
+            0%,
+            19%,
+            21%,
+            23%,
+            25%,
+            54%,
+            56%,
+            100% {
+                opacity: 1;
+            }
+
+            20%,
+            22%,
+            24%,
+            55% {
+                opacity: 0.4;
+            }
         }
 
         .nav-bar {
@@ -699,10 +897,22 @@
             text-shadow: 0 0 15px rgba(255, 59, 48, 0.6);
             animation: micPulse 1.5s infinite;
         }
+
         @keyframes micPulse {
-            0% { transform: translateY(-50%) scale(1.3); opacity: 1; }
-            50% { transform: translateY(-50%) scale(1.5); opacity: 0.7; }
-            100% { transform: translateY(-50%) scale(1.3); opacity: 1; }
+            0% {
+                transform: translateY(-50%) scale(1.3);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateY(-50%) scale(1.5);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(-50%) scale(1.3);
+                opacity: 1;
+            }
         }
 
         /* PDP Elements */
@@ -982,10 +1192,16 @@
                 transition: 0.3s ease;
             }
 
-            .nav-item:hover {
+            @media (hover: hover) {
+                .nav-item:hover {
+                    background: var(--surface);
+                    transform: translateX(5px);
+                }
+            }
+
+            .nav-item:active {
                 background: var(--surface);
-                transform: translateX(5px);
-                /* Smooth hover animation */
+                transform: scale(0.98);
             }
 
             .nav-item span {
@@ -1107,13 +1323,11 @@
             width: 100vw;
             height: 100vh;
             background: rgba(0, 0, 0, 0.75);
-            /* Dark semi-transparent */
             backdrop-filter: blur(8px);
-            /* Sheeshe jaisa blur */
             z-index: 900;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.4s ease;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
 
         #search-spotlight-overlay.active {
@@ -1130,36 +1344,6 @@
 
         /* 3. Search Bar ka Premium Hover/Focus Look */
         /* Note: Agar aapke search input ki class alag hai, toh yahan update kar lena */
-        /* ========================================== */
-        /* CINEMATIC SPOTLIGHT + GOOGLE MULTI-COLOR   */
-        /* ========================================== */
-
-        /* 1. Dark Blur Background Overlay */
-        #search-spotlight-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(8px);
-            z-index: 900;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-        }
-
-        #search-spotlight-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* 2. Search Bar ko Overlay ke upar laane ke liye */
-        .search-wrapper-focused {
-            position: relative;
-            z-index: 901 !important;
-            transition: transform 0.3s ease;
-        }
 
         /* 3. Google Colors Animation (Blue -> Red -> Yellow -> Green) */
         @keyframes googleMagic {
@@ -1201,14 +1385,377 @@
             animation: googleMagic 4s infinite alternate ease-in-out;
         }
 
+        /* 5. Premium Price Range Slider */
+        .price-filter-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+            padding: 18px;
+            background: var(--surface);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .price-label-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price-slider-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 30px;
+        }
+
+        input[type="range"]#price-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to right, var(--accent) 100%, var(--border-color) 100%);
+            border-radius: 10px;
+            outline: none;
+        }
+
+        input[type="range"]#price-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            border: 4px solid var(--surface);
+            box-shadow: 0 4px 12px rgba(197, 160, 89, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        input[type="range"]#price-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.6);
+        }
+
+        input[type="range"]#price-slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            border: 4px solid var(--surface);
+            box-shadow: 0 4px 12px rgba(197, 160, 89, 0.4);
+            transition: all 0.3s;
+        }
+
         /* Animated Glow Gradient for Quiz Banner */
         @keyframes spinGlow {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* --- Y INFINITY AI ASSISTANT --- */
+        #ai-fab {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #ffecb3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 25px rgba(197, 160, 89, 0.4);
+            cursor: pointer;
+            z-index: 999;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s;
+            border: 2px solid #fff;
+        }
+
+        @media (hover: hover) {
+            #ai-fab:hover {
+                transform: scale(1.1);
+                box-shadow: 0 10px 25px rgba(197, 160, 89, 0.6);
+            }
+        }
+
+        #ai-fab:active {
+            transform: scale(0.9);
+        }
+
+        #ai-fab.active {
+            transform: rotate(45deg);
+            background: var(--danger);
+            color: #fff;
+            border-color: transparent;
+        }
+
+        #ai-chat-window {
+            position: fixed;
+            bottom: 165px;
+            right: 20px;
+            width: 350px;
+            max-width: calc(100vw - 40px);
+            height: 500px;
+            max-height: 70vh;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 998;
+            overflow: hidden;
+            animation: chatSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s;
+        }
+
+        [data-theme="dark"] #ai-chat-window,
+        [data-theme="royal"] #ai-chat-window,
+        [data-theme="forest"] #ai-chat-window,
+        [data-theme="midnight"] #ai-chat-window {
+            background: rgba(22, 22, 22, 0.85);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes chatSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .ai-header {
+            padding: 20px;
+            background: linear-gradient(90deg, var(--accent), #e0c388);
+            color: #000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .ai-header img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+
+        .ai-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+        }
+
+        #ai-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            scrollbar-width: none;
+        }
+
+        .msg {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            position: relative;
+            animation: msgPop 0.3s ease-out;
+        }
+
+        @keyframes msgPop {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .msg-user {
+            align-self: flex-end;
+            background: var(--primary);
+            color: var(--bg);
+            border-bottom-right-radius: 5px;
+        }
+
+        .msg-ai {
+            align-self: flex-start;
+            background: var(--surface);
+            color: var(--primary);
+            border-bottom-left-radius: 5px;
+            border: 1px solid var(--border-color);
+        }
+
+        .ai-input-area {
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .ai-input {
+            flex: 1;
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            padding: 10px 15px;
+            border-radius: 20px;
+            outline: none;
+            color: var(--primary);
+            font-family: inherit;
+        }
+
+        .ai-send {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .typing {
+            font-size: 0.85rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            padding: 0 20px;
+        }
+
+        .infinity-loader {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .infinity-svg {
+            width: 40px;
+            height: 20px;
+        }
+
+        .infinity-path {
+            stroke: var(--accent);
+            stroke-width: 5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            animation: infinity-draw 2.5s infinite linear, infinity-glow 2s infinite ease-in-out;
+        }
+
+        @keyframes infinity-draw {
             0% {
-                transform: rotate(0deg);
+                stroke-dashoffset: 200;
+            }
+
+            50% {
+                stroke-dashoffset: 0;
             }
 
             100% {
-                transform: rotate(360deg);
+                stroke-dashoffset: -200;
+            }
+        }
+
+        @keyframes infinity-glow {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 2px var(--accent));
+                opacity: 0.8;
+            }
+
+            50% {
+                filter: drop-shadow(0 0 8px var(--accent));
+                opacity: 1;
+            }
+        }
+
+        .typing-text {
+            background: linear-gradient(90deg, var(--secondary), var(--primary), var(--secondary));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 2s linear infinite;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Recommendation card in chat */
+        .ai-prod-card {
+            background: var(--bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-top: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .ai-prod-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+        }
+
+        .ai-prod-card img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        .ai-prod-card div {
+            padding: 8px;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        @media (min-width: 1024px) {
+            #ai-chat-window {
+                bottom: 40px;
+                right: 300px;
+                width: 400px;
+                height: 600px;
+            }
+
+            #ai-fab {
+                bottom: 40px;
+                right: 40px;
+                width: 70px;
+                height: 70px;
+                font-size: 2.2rem;
             }
         }
     </style>
@@ -1256,11 +1803,11 @@
 
         <div id="home" class="screen active">
             <div class="story-rail">
-                <div class="story-item" onclick="filterShop('Wedding')">
+                <div class="story-item" onclick="applyShopFilter('all'); nav('shop')">
                     <div class="story-ring"><img src="https://i.ibb.co/1fSsj9MH/wedding.jpg"></div>
                     <span data-i18n="story_wedding">Wedding</span>
                 </div>
-                <div class="story-item" onclick="filterShop('Baby')">
+                <div class="story-item" onclick="applyShopFilter('all'); nav('shop')">
                     <div class="story-ring"><img src="https://i.ibb.co/1JpPX4f6/baby.jpg"></div>
                     <span data-i18n="story_baby">Baby</span>
                 </div>
@@ -1413,34 +1960,37 @@
                 <i class="fa-solid fa-microphone mic-icon" id="mic-btn" onclick="startVoiceSearch()"></i>
             </div>
 
-            <div style="display:flex; gap:10px; margin-bottom:15px; overflow-x:auto; scrollbar-width:none;">
-                <button onclick="renderShop('all')"
-                    style="padding:8px 16px; background:var(--primary); color:var(--bg); border-radius:20px; border:none; font-size:0.8rem;"
+            <div class="filter-btn-group"
+                style="display:flex; gap:10px; margin-bottom:15px; overflow-x:auto; scrollbar-width:none;">
+                <button class="shop-filter-btn active" data-category="all" onclick="applyShopFilter('all')"
                     data-i18n="shop_all">All</button>
-                <button onclick="renderShop('god')"
-                    style="padding:8px 16px; background:var(--surface); color:var(--primary); border:1px solid var(--border-color); border-radius:20px; font-size:0.8rem;"
+                <button class="shop-filter-btn" data-category="god" onclick="applyShopFilter('god')"
                     data-i18n="shop_god">God</button>
-                <button onclick="renderShop('decor')"
-                    style="padding:8px 16px; background:var(--surface); color:var(--primary); border:1px solid var(--border-color); border-radius:20px; font-size:0.8rem;"
+                <button class="shop-filter-btn" data-category="decor" onclick="applyShopFilter('decor')"
                     data-i18n="shop_decor">Decor</button>
-                <button onclick="renderShop('chatrapati')"
-                    style="padding:8px 16px; background:var(--surface); color:var(--primary); border:1px solid var(--border-color); border-radius:20px; font-size:0.8rem;"
+                <button class="shop-filter-btn" data-category="chatrapati" onclick="applyShopFilter('chatrapati')"
                     data-i18n="shop_chatrapati">Chatrapati</button>
-                <button onclick="renderShop('custom')"
-                    style="padding:8px 16px; background:var(--surface); color:var(--primary); border:1px solid var(--border-color); border-radius:20px; font-size:0.8rem;"
+                <button class="shop-filter-btn" data-category="custom" onclick="applyShopFilter('custom')"
                     data-i18n="shop_custom">Custom</button>
-                <button onclick="renderShop('Dr. Ambedkar')"
-                    style="padding:8px 16px; background:var(--surface); color:var(--primary); border:1px solid var(--border-color); border-radius:20px; font-size:0.8rem;"
+                <button class="shop-filter-btn" data-category="Dr. Ambedkar" onclick="applyShopFilter('Dr. Ambedkar')"
                     data-i18n="shop_ambedkar">Dr.Ambedkar</button>
             </div>
 
-            <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px; padding: 0 5px;">
-                <span style="font-size: 0.8rem; font-weight: 700; color: var(--secondary);">Max Price:</span>
-                <input type="range" id="price-slider" min="100" max="3000" step="50" value="3000" style="flex:1;"
-                    oninput="document.getElementById('price-val').innerText='Rs. '+this.value; filterByPrice(this.value)">
-                <span id="price-val"
-                    style="font-size: 0.9rem; font-weight: 800; color: var(--accent); min-width: 50px; text-align: right;">Rs.
-                    3000</span>
+            <div class="price-filter-container">
+                <div class="price-label-row">
+                    <span style="font-size: 0.9rem; font-weight: 700; color: var(--primary);"
+                        data-i18n="shop_max_price">Filter by Price</span>
+                    <span id="price-val" style="font-size: 1rem; font-weight: 800; color: var(--accent);">Rs.
+                        3000</span>
+                </div>
+                <div class="price-slider-wrapper">
+                    <input type="range" id="price-slider" min="100" max="3000" step="50" value="3000"
+                        oninput="updatePriceSlider(this.value)">
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-top: -5px;">
+                    <span style="font-size: 0.7rem; color: var(--secondary);">Rs. 100</span>
+                    <span style="font-size: 0.7rem; color: var(--secondary);">Rs. 3000</span>
+                </div>
             </div>
 
             <div class="product-grid" id="shop-container"></div>
@@ -1699,7 +2249,8 @@
             </div>
             <p
                 style="font-size: 0.8rem; text-align: center; color: var(--secondary); margin-top: -10px; margin-bottom: 20px;">
-                <i class="fa-solid fa-hand-pointer"></i> Drag the text to place it anywhere on the frame</p>
+                <i class="fa-solid fa-hand-pointer"></i> Drag the text to place it anywhere on the frame
+            </p>
 
             <h4 style="margin-bottom:15px;" data-i18n="custom_select">Select Premium Frame</h4>
             <div style="display:flex; overflow-x:auto; gap: 15px; padding-bottom: 15px; scrollbar-width: none;">
@@ -2059,7 +2610,13 @@
     </nav>
 
     <script>
-        const products = [
+        // ==========================================
+        // DYNAMIC CATALOG MANAGEMENT (GOOGLE DRIVE)
+        // ==========================================
+        // Paste your Deployed Web App URL here after setting up script.google.com
+        const DRIVE_CATALOG_URL = "https://script.google.com/macros/s/AKfycbwJFU958yZz1fZ9NvGD-dSMLZvlmK7JfVDMPU4iXCQUbFHljMHGKivKXf4IlcEHOXRg/exec"; 
+
+        let products = [
             { id: 1, name: "Swami Samarth frame", price: 450, cat: "god", img: "https://i.ibb.co/ycFpPkdv/swami.png" },
             { id: 2, name: "Antique Gold Mirror", price: 150, cat: "mirror", img: "https://i.ibb.co/dsgVCgXv/mirror01.png" },
             { id: 3, name: "Abstract Decor Set", price: 450, cat: "decor", img: "https://i.ibb.co/5Wy5sv3q/decor01.png" },
@@ -2088,6 +2645,27 @@
             { id: 26, name: "Dr. Babasaheb Ambedkar Black Border photo frame.", price: 950, cat: "Dr. Ambedkar", img: "https://i.ibb.co/yBpBc30r/ambedkar2.jpg" },
         ];
 
+        async function fetchManagedProducts() {
+            if (!DRIVE_CATALOG_URL) return;
+            
+            try {
+                const response = await fetch(DRIVE_CATALOG_URL);
+                const driveProducts = await response.json();
+                
+                if (driveProducts && driveProducts.length > 0) {
+                    // Prepend new products from Drive to our static list
+                    products = [...driveProducts, ...products];
+                    
+                    // Re-render UI to show new items
+                    renderHome();
+                    applyShopFilter('all');
+                    console.log("Successfully synced catalog with Google Drive.");
+                }
+            } catch (error) {
+                console.warn("Google Drive Catalog Sync Failed:", error);
+            }
+        }
+
         // Multilingual Setup
         const i18n = {
             "en": {
@@ -2102,7 +2680,8 @@
                 "custom_title": "Frame Your Photo", "custom_subtitle": "Upload your picture and select a frame border.", "custom_upload": "Upload Your Photo", "custom_select": "Select Premium Frame", "custom_order": "Order Custom Frame", "custom_note": "Please note: The visual preview may slightly differ from the actual product. We are continuously working to improve this feature.",
                 "book_profile": "Studio Profile", "book_founder": "Founder & Lead", "book_legacy": "Legacy", "book_rating": "Rating", "book_call": "Call Now", "book_chat": "Chat", "book_session": "Book a Session", "book_name": "Your Name", "book_opt1": "Wedding Photography", "book_opt2": "Baby Shoot", "book_opt3": "Pre-Wedding", "book_opt4": "Passport Photo", "book_opt5": "Event Videography", "book_req": "Request Booking", "book_visit": "Visit Our Studio", "book_address": "Chatrapati Shivaji Maharaj Market Yard, Near HDFC Bank<br>Open Mon-Sun: 9:00 AM - 7:00 PM", "book_dir": "Get Directions", "book_dev": "Developed By",
                 "pdp_zoom": "Tap to Zoom", "pdp_desc_title": "Description", "pdp_desc_text": "Experience premium craftsmanship with this high-definition frame from Choundeshwari Digital & Yashraj Photo Frame. Every piece is meticulously crafted using high-quality synthetic wood and features a crystal-clear, shatter-resistant glass front to ensure maximum durability. Our frames are designed to be water-resistant and dust-proof, making them perfect for preserving your cherished memories, devotional art, or home decor for a lifetime. Whether you are looking for a gift or a centerpiece for your own home, our frames offer a blend of traditional elegance and modern longevity.", "pdp_tag1": "Teak Wood", "pdp_tag2": "Sparkle/Matt", "pdp_add": "Add to Cart", "pdp_buy": "Buy Now",
-                "home_reviews": "Customer Reviews", "review_1": "The frame quality is excellent! Very premium teak wood and fast delivery.", "review_2": "Loved the magic try-on feature. Ordered an frame and it looks beautiful in my living room.", "review_3": "Best photo frame studio in Jafrabad! The frame is a masterpiece.", "tryon_wall_color": "Wall Color", "install_app": "Install Yashraj Frames"
+                "home_reviews": "Customer Reviews", "review_1": "The frame quality is excellent! Very premium teak wood and fast delivery.", "review_2": "Loved the magic try-on feature. Ordered an frame and it looks beautiful in my living room.", "review_3": "Best photo frame studio in Jafrabad! The frame is a masterpiece.", "tryon_wall_color": "Wall Color", "install_app": "Install Yashraj Frames",
+                "offline_title": "Connection Lost", "offline_text": "It seems the frame bridge is temporarily down. Check your connection to continue framing.", "offline_retry": "Retry Connection"
             },
             "mr": {
                 "nav_home": "मुख्यपृष्ठ", "nav_shop": "दुकान", "nav_tryon": "ट्राय-ऑन", "nav_custom": "कस्टम", "nav_contact": "संपर्क",
@@ -2116,7 +2695,8 @@
                 "custom_title": "तुमचा फोटो फ्रेम करा", "custom_subtitle": "तुमचा फोटो अपलोड करा आणि फ्रेमची बॉर्डर निवडा.", "custom_upload": "तुमचा फोटो अपलोड करा", "custom_select": "प्रीमियम फ्रेम निवडा", "custom_order": "कस्टम फ्रेमची ऑर्डर द्या", "custom_note": "कृपया नोंद घ्या: दृश्य पूर्वावलोकन प्रत्यक्ष उत्पादनापेक्षा थोडे वेगळे असू शकते.",
                 "book_profile": "स्टुडिओ प्रोफाइल", "book_founder": "संस्थापक आणि प्रमुख", "book_legacy": "वारसा", "book_rating": "रेटिंग", "book_call": "आता कॉल करा", "book_chat": "चॅट करा", "book_session": "सेशन बुक करा", "book_name": "तुमचे नाव", "book_opt1": "वेडिंग फोटोग्राफी", "book_opt2": "बेबी शूट", "book_opt3": "प्री-वेडिंग", "book_opt4": "पासपोर्ट फोटो", "book_opt5": "इव्हेंट व्हिडिओग्राफी", "book_req": "बुकिंगची विनंती करा", "book_visit": "आमच्या स्टुडिओला भेट द्या", "book_address": "छत्रपती शिवाजी महाराज मार्केट यार्ड, HDFC बँकेच्या जवळ<br>उघडे सोम-रवि: सकाळी ९:०० - संध्याकाळी ७:००", "book_dir": "दिशानिर्देश मिळवा", "book_dev": "विकसित केले",
                 "pdp_zoom": "झूम करण्यासाठी टॅप करा", "pdp_desc_title": "वर्णन", "pdp_desc_text": "चौंडेश्वरी डिजिटल आणि यशराज फोटो फ्रेमच्या या हाय-डेफिनिशन फ्रेमसह प्रीमियम हस्तकलेचा अनुभव घ्या. प्रत्येक तुकडा उच्च-गुणवत्तेचे सिंथेटिक लाकूड वापरून काळजीपूर्वक तयार केला जातो. आपल्या आठवणी सुरक्षित ठेवण्यासाठी या फ्रेम्स जलरोधक आणि धूळरोधक आहेत.", "pdp_tag1": "सागवान लाकूड", "pdp_tag2": "स्पार्कल/मॅट", "pdp_add": "कार्टमध्ये जोडा", "pdp_buy": "आता खरेदी करा",
-                "home_reviews": "ग्राहक पुनरावलोकने", "review_1": "फ्रेम गुणवत्ता उत्कृष्ट आहे! खूप प्रीमियम सागवान लाकूड आणि जलद वितरण.", "review_2": "मॅजिक ट्राय-ऑन वैशिष्ट्य आवडले. फ्रेम ऑर्डर केली आणि ती माझ्या दिवाणखान्यात सुंदर दिसते.", "review_3": "जाफराबाद मधील सर्वोत्तम फोटो फ्रेम स्टुडिओ! फ्रेम एक उत्कृष्ट नमुना आहे.", "tryon_wall_color": "भिंतीचा रंग", "install_app": "यशराज फ्रेम्स इंस्टॉल करा"
+                "home_reviews": "ग्राहक पुनरावलोकने", "review_1": "फ्रेम गुणवत्ता उत्कृष्ट आहे! खूप प्रीमियम सागवान लाकूड आणि जलद वितरण.", "review_2": "मॅजिक ट्राय-ऑन वैशिष्ट्य आवडले. फ्रेम ऑर्डर केली आणि ती माझ्या दिवाणखान्यात सुंदर दिसते.", "review_3": "जाफराबाद मधील सर्वोत्तम फोटो फ्रेम स्टुडिओ! फ्रेम एक उत्कृष्ट नमुना आहे.", "tryon_wall_color": "भिंतीचा रंग", "install_app": "यशराज फ्रेम्स इंस्टॉल करा",
+                "offline_title": "कनेक्शन तुटले", "offline_text": "असे वाटते की फ्रेम ब्रिज तात्पुरते बंद आहे. सुरू ठेवण्यासाठी तुमचे कनेक्शन तपासा.", "offline_retry": "पुन्हा प्रयत्न करा"
             },
             "hi": {
                 "nav_home": "होम", "nav_shop": "दुकान", "nav_tryon": "ट्राई-ऑन", "nav_custom": "कस्टम", "nav_contact": "संपर्क",
@@ -2130,7 +2710,8 @@
                 "custom_title": "अपनी फोटो फ्रेम करें", "custom_subtitle": "अपनी तस्वीर अपलोड करें और एक फ्रेम बॉर्डर चुनें।", "custom_upload": "अपनी फोटो अपलोड करें", "custom_select": "प्रीमियम फ्रेम चुनें", "custom_order": "कस्टम फ्रेम ऑर्डर करें", "custom_note": "कृपया ध्यान दें: दृश्य पूर्वावलोकन वास्तविक उत्पाद से थोड़ा भिन्न हो सकता है।",
                 "book_profile": "स्टूडियो प्रोफ़ाइल", "book_founder": "संस्थापक और प्रमुख", "book_legacy": "विरासत", "book_rating": "रेटिंग", "book_call": "अभी कॉल करें", "book_chat": "चैट करें", "book_session": "सेशन बुक करें", "book_name": "आपका नाम", "book_opt1": "वेडिंग फोटोग्राफी", "book_opt2": "बेबी शूट", "book_opt3": "प्री-वेडिंग", "book_opt4": "पासपोर्ट फोटो", "book_opt5": "इवेंट वीडियोग्राफी", "book_req": "बुकिंग का अनुरोध करें", "book_visit": "हमारे स्टूडियो आएं", "book_address": "छत्रपति शिवाजी महाराज मार्केट यार्ड, HDFC बैंक के पास<br>खुला सोम-रवि: सुबह 9:00 - शाम 7:00", "book_dir": "दिशा-निर्देश प्राप्त करें", "book_dev": "विकसित किया गया",
                 "pdp_zoom": "ज़ूम करने के लिए टैप करें", "pdp_desc_title": "विवरण", "pdp_desc_text": "चौंडेश्वरी डिजिटल और यशराज फोटो फ्रेम के इस हाई-डेफिनिशन फ्रेम के साथ प्रीमियम शिल्प कौशल का अनुभव करें। प्रत्येक टुकड़ा उच्च गुणवत्ता वाली लकड़ी का उपयोग करके तैयार किया गया है। हमारी फ्रेम जल प्रतिरोधी और धूल-सबूत हैं।", "pdp_tag1": "सागौन की लकड़ी", "pdp_tag2": "स्पार्कल/मैट", "pdp_add": "कार्ट में जोड़ें", "pdp_buy": "अभी खरीदें",
-                "home_reviews": "ग्राहक समीक्षाएँ", "review_1": "फ्रेम की गुणवत्ता उत्कृष्ट है! बहुत ही प्रीमियम सागौन की लकड़ी और तेज डिलीवरी।", "review_2": "मैजिक ट्राई-ऑन सुविधा पसंद आई। एक फ्रेम मंगवाया और यह मेरे लिविंग रूम में सुंदर लगता है।", "review_3": "जाफराबाद का सबसे अच्छा फोटो फ्रेम स्टूडियो! फ्रेम एक उत्कृष्ट कृति है।", "tryon_wall_color": "दीवार का रंग", "install_app": "यशराज फ्रेम्स इंस्टॉल करें"
+                "home_reviews": "ग्राहक समीक्षाएँ", "review_1": "फ्रेम की गुणवत्ता उत्कृष्ट है! बहुत ही प्रीमियम सागौन की लकड़ी और तेज डिलीवरी।", "review_2": "मैजिक ट्राई-ऑन सुविधा पसंद आई। एक फ्रेम मंगवाया और यह मेरे लिविंग रूम में सुंदर लगता है।", "review_3": "जाफराबाद का सबसे अच्छा फोटो फ्रेम स्टूडियो! फ्रेम एक उत्कृष्ट कृति है।", "tryon_wall_color": "दीवार का रंग", "install_app": "यशराज फ्रेम्स इंस्टॉल करें",
+                "offline_title": "कनेक्शन टूट गया", "offline_text": "ऐसा लगता है कि फ्रेम ब्रिज अस्थायी रूप से बंद है। जारी रखने के लिए अपना कनेक्शन जांचें।", "offline_retry": "पुनः प्रयास करें"
             }
         };
 
@@ -2249,14 +2830,23 @@
                 applyTranslations(savedLang);
             }, 50);
 
-            renderShop('all');
+            applyShopFilter('all');
             renderHome();
+            fetchManagedProducts();
+            updateOnlineStatus();
 
-            // Handle Direct Product Links
+            window.addEventListener('online', updateOnlineStatus);
+            window.addEventListener('offline', updateOnlineStatus);
+
+            // Handle Direct Product Links (?product=ID)
             const urlParams = new URLSearchParams(window.location.search);
             const productId = urlParams.get('product');
             if (productId) {
-                setTimeout(() => openProductPage(parseInt(productId)), 200);
+                const id = parseInt(productId);
+                if (products.some(p => p.id === id)) {
+                    // Slight delay to ensure DOM and images are ready for the animation
+                    setTimeout(() => openProductPage(id), 300);
+                }
             }
 
             // Check Theme
@@ -2315,11 +2905,25 @@
             products.slice(0, 4).forEach(p => container.innerHTML += createCard(p));
         }
 
-        function renderShop(filter) {
+        function applyShopFilter(filter) {
+            console.log("applyShopFilter called with:", filter);
             const container = document.getElementById('shop-container');
+            if (!container) return;
             container.innerHTML = "";
             let list = filter === 'all' ? products : products.filter(p => p.cat === filter);
             list.forEach(p => container.innerHTML += createCard(p));
+
+            // Update Active Class on Buttons
+            const buttons = document.querySelectorAll('.shop-filter-btn');
+            console.log("Found buttons:", buttons.length);
+            buttons.forEach(btn => {
+                const cat = btn.getAttribute('data-category');
+                if (cat === filter) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
         }
 
         function createCard(p) {
@@ -2559,11 +3163,11 @@
             const mic = document.getElementById('mic-btn');
             const input = document.getElementById('search-input');
             const lang = localStorage.getItem('yashraj_lang') || 'en';
-            
+
             if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
                 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
                 const recognition = new SpeechRecognition();
-                
+
                 // Set language based on app setting
                 if (lang === 'mr') recognition.lang = 'mr-IN';
                 else if (lang === 'hi') recognition.lang = 'hi-IN';
@@ -2625,8 +3229,9 @@
             const shareBtn = document.getElementById('view-share-btn');
             if (shareBtn) {
                 shareBtn.onclick = () => {
-                    const domain = window.location.href.split('#')[0]; // Clean URL tracking
-                    const text = encodeURIComponent(`Look at this beautiful frame: *${p.name}* for Rs. ${p.price}. %0A Check it out here: ${domain}`);
+                    // Use origin and pathname to construct a clean absolute URL
+                    const shareUrl = `${window.location.origin}${window.location.pathname}?product=${p.id}`;
+                    const text = encodeURIComponent(`Look at this beautiful frame: *${p.name}* for Rs. ${p.price}. \nCheck it out here: ${shareUrl}`);
                     window.open(`https://wa.me/?text=${text}`);
                 };
             }
@@ -2825,7 +3430,7 @@
             outline: 4px solid var(--accent) !important;
             outline-offset: 4px;
             transform: scale(1.05);
-            transition: all 0.2s ease-in-out;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s;
             box-shadow: 0 10px 25px rgba(197, 160, 89, 0.5);
             z-index: 10;
         }
@@ -2898,6 +3503,16 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Check if user is actually on a Smart TV based on their device info
+            // Initialize Price Slider track
+            const priceSlider = document.getElementById('price-slider');
+            if (priceSlider) {
+                const val = priceSlider.value;
+                const min = priceSlider.min || 100;
+                const max = priceSlider.max || 3000;
+                const percentage = ((val - min) / (max - min)) * 100;
+                priceSlider.style.background = `linear-gradient(to right, var(--accent) 0%, var(--accent) ${percentage}%, var(--border-color) ${percentage}%, var(--border-color) 100%)`;
+            }
+
             const isSmartTV = /SmartTV|Web0S|Tizen|Roku|AOSP|Android TV|AppleTV/i.test(navigator.userAgent);
             let teleModeActive = false;
 
@@ -3001,6 +3616,19 @@
             window.open(baseUrl);
         }
 
+        function updatePriceSlider(val) {
+            const slider = document.getElementById('price-slider');
+            const priceVal = document.getElementById('price-val');
+            if (priceVal) priceVal.innerText = 'Rs. ' + val;
+
+            const min = slider.min || 100;
+            const max = slider.max || 3000;
+            const percentage = ((val - min) / (max - min)) * 100;
+            slider.style.background = `linear-gradient(to right, var(--accent) 0%, var(--accent) ${percentage}%, var(--border-color) ${percentage}%, var(--border-color) 100%)`;
+
+            filterByPrice(val);
+        }
+
         function filterByPrice(max) {
             const container = document.getElementById('shop-container');
             container.innerHTML = "";
@@ -3073,61 +3701,165 @@
             }
         }
 
-        let dragElem = null;
-        let dragOffsetX = 0, dragOffsetY = 0;
+        // ==========================================
+        // Y INFINITY AI ASSISTANT LOGIC (GEMINI)
+        // ==========================================
+        const GEMINI_API_KEY = "AIzaSyCBZvhr7J9NGBFMg_BuZfwR3xiwJTdWRjU";
+        const AI_NAME = "Y Infinity";
 
-        function startDrag(e, elem) {
-            e.preventDefault();
-            dragElem = elem;
+        const COMPANY_BIO = `
+            Company: Choundeshwari Digital & Yashraj Photo Frames.
+            Website: https://yashrajframes.netlify.app
+            Founder: Madhavrao Jadhav.
+            Developer: Yashraj Jadhav.
+            Location: Jafrabad, Maharashtra. Near HDFC Bank, Market Yard.
+            Services: Premium Photo Framing (teak wood, synthetic, water/dust proof), Professional Photography (Wedding, Baby, Pre-wedding, Events), Video Editing.
+            Special Features: Magic Try-On (AR), Custom Framing with Engraving, Home Delivery.
+        `;
 
-            let clientX = e.clientX;
-            let clientY = e.clientY;
-            if (e.type.startsWith('touch')) {
-                clientX = e.touches[0].clientX;
-                clientY = e.touches[0].clientY;
+        let chatHistory = [];
+
+        function toggleAIChat() {
+            const win = document.getElementById('ai-chat-window');
+            const fab = document.getElementById('ai-fab');
+            const isOpen = win.style.display === 'flex';
+
+            win.style.display = isOpen ? 'none' : 'flex';
+            fab.classList.toggle('active');
+
+            if (!isOpen) {
+                // Proactive welcome message
+                setTimeout(() => {
+                    if (document.getElementById('ai-messages').children.length === 0) {
+                        addAIMessage(`Hi! I am **${AI_NAME}**, your personal assistant at Yashraj Frames. How can I help you find the perfect frame or book a shoot today?`);
+                    }
+                }, 300);
             }
-
-            const rect = elem.getBoundingClientRect();
-            const parentRect = elem.parentElement.getBoundingClientRect();
-
-            dragOffsetX = clientX - rect.left;
-            dragOffsetY = clientY - rect.top;
-
-            elem.style.left = (rect.left - parentRect.left) + 'px';
-            elem.style.top = (rect.top - parentRect.top) + 'px';
-            elem.style.transform = 'none';
-
-            document.onmousemove = onDrag;
-            document.onmouseup = stopDrag;
-            document.ontouchmove = onDrag;
-            document.ontouchend = stopDrag;
         }
 
-        function onDrag(e) {
-            if (!dragElem) return;
-            e.preventDefault();
+        function addAIMessage(text) {
+            const container = document.getElementById('ai-messages');
+            const div = document.createElement('div');
+            div.className = 'msg msg-ai';
 
-            let clientX = e.clientX;
-            let clientY = e.clientY;
-            if (e.type.startsWith('touch')) {
-                clientX = e.touches[0].clientX;
-                clientY = e.touches[0].clientY;
-            }
+            // Basic markdown handling for bold and products
+            let processedText = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
 
-            const parentRect = dragElem.parentElement.getBoundingClientRect();
-            let newLeft = clientX - parentRect.left - dragOffsetX;
-            let newTop = clientY - parentRect.top - dragOffsetY;
+            // Check for product mentions [ID:X]
+            const productRegex = /\[ID:(\d+)\]/g;
+            processedText = processedText.replace(productRegex, (match, id) => {
+                const p = products.find(item => item.id == id);
+                if (p) {
+                    return `
+                        <div class="ai-prod-card" onclick="openProductPage(${p.id}); toggleAIChat();">
+                            <img src="${p.img}">
+                            <div>${p.name} - Rs. ${p.price}</div>
+                        </div>
+                    `;
+                }
+                return "";
+            });
 
-            dragElem.style.left = newLeft + 'px';
-            dragElem.style.top = newTop + 'px';
+            div.innerHTML = processedText;
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+            chatHistory.push({ role: "model", parts: [{ text: text }] });
         }
 
-        function stopDrag() {
-            dragElem = null;
-            document.onmousemove = null;
-            document.onmouseup = null;
-            document.ontouchmove = null;
-            document.ontouchend = null;
+        function addUserMessage(text) {
+            const container = document.getElementById('ai-messages');
+            const div = document.createElement('div');
+            div.className = 'msg msg-user';
+            div.innerText = text;
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+            chatHistory.push({ role: "user", parts: [{ text: text }] });
+        }
+
+        async function handleAISend() {
+            const input = document.getElementById('ai-input-text');
+            const text = input.value.trim();
+            if (!text) return;
+
+            input.value = "";
+            addUserMessage(text);
+            document.getElementById('ai-typing').style.display = 'block';
+
+            try {
+                const response = await callGemini(text);
+                document.getElementById('ai-typing').style.display = 'none';
+                addAIMessage(response);
+            } catch (error) {
+                console.error("AI Connection Error:", error);
+                document.getElementById('ai-typing').style.display = 'none';
+
+                let errorMsg = "I'm having trouble connecting right now. ";
+                if (window.location.protocol === 'file:') {
+                    errorMsg += "<b>Action Required:</b> You are running this as a local file (file://). Browser security blocks AI requests in this mode. Please open it using a **Live Server** (like the VS Code extension) to allow the AI to work.";
+                } else if (error.message.includes("403")) {
+                    errorMsg += "The API key might be restricted or invalid. Please check your Gemini API key settings.";
+                } else {
+                    errorMsg += "Please check your internet connection and try again.";
+                }
+                addAIMessage(errorMsg);
+            }
+        }
+
+        async function callGemini(userPrompt) {
+            // Corrected model: gemini-1.5-flash
+            const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+
+            const systemPrompt = `
+                You are "${AI_NAME}", a helpful AI assistant for "Yashraj Frames".
+                Context: ${COMPANY_BIO}
+                
+                Current Product Catalog (Suggest by name and use [ID:number] format to display cards):
+                ${JSON.stringify(products.map(p => ({ id: p.id, name: p.name, price: p.price, category: p.cat })))}
+
+                Instructions:
+                1. Be polite, premium, and professional.
+                2. Help users find products based on their needs.
+                3. When recommending a product, refer to it by name and include [ID:N].
+                4. Supported languages: English, Hindi, Marathi. Respond in the language the user speaks.
+            `;
+
+            const body = {
+                system_instruction: {
+                    parts: { text: systemPrompt }
+                },
+                contents: chatHistory
+            };
+
+            const resp = await fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            });
+
+            if (!resp.ok) {
+                const err = await resp.json();
+                throw new Error(err.error?.message || "API request failed");
+            }
+
+            const data = await resp.json();
+            if (data.candidates && data.candidates[0].content && data.candidates[0].content.parts) {
+                return data.candidates[0].content.parts[0].text;
+            } else {
+                throw new Error("Invalid response format");
+            }
+        }
+
+
+        function updateOnlineStatus() {
+            const offlineScreen = document.getElementById('offline-screen');
+            if (navigator.onLine) {
+                offlineScreen.style.display = 'none';
+            } else {
+                offlineScreen.style.display = 'flex';
+                // Trigger translation for the offline screen specifically
+                const lang = localStorage.getItem('yashraj_lang') || 'en';
+                applyTranslations(lang);
+            }
         }
     </script>
 
@@ -3177,6 +3909,51 @@
 
             <button class="btn-full" onclick="runQuizFilter()"
                 style="margin-top: 5px; background: var(--accent); color: #fff;">Find Perfect Frames</button>
+        </div>
+    </div>
+    <!-- Y Infinity AI Assistant UI -->
+    <div id="ai-fab" onclick="toggleAIChat()">
+        <i class="fa-solid fa-infinity"></i>
+    </div>
+
+    <div id="ai-chat-window">
+        <div class="ai-header">
+            <img src="https://i.ibb.co/60vv3MMt/yicon4.png" alt="Y Infinity">
+            <div>
+                <h3 id="ai-name-header">Y Infinity</h3>
+                <small style="opacity: 0.8; font-size: 0.7rem;">AI Shopping Assistant</small>
+            </div>
+        </div>
+        <div id="ai-messages">
+            <!-- Messages will appear here -->
+        </div>
+        <div id="ai-typing" class="typing">
+            <div class="infinity-loader">
+                <svg class="infinity-svg" viewBox="0 0 100 50">
+                    <path class="infinity-path"
+                        d="M25,10 C15,10 10,15 10,25 C10,35 15,40 25,40 C35,40 45,35 50,25 C55,15 65,10 75,10 C85,10 90,15 90,25 C90,35 85,40 75,40 C65,40 55,35 50,25 C45,15 35,10 25,10 Z" />
+                </svg>
+                <span class="typing-text">Y Infinity is thinking...</span>
+            </div>
+        </div>
+        <div class="ai-input-area">
+            <input type="text" id="ai-input-text" class="ai-input" placeholder="Ask Y Infinity...">
+            <button class="ai-send" onclick="handleAISend()">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+    <!-- Premium Offline Screen -->
+    <div id="offline-screen" class="offline-overlay">
+        <div class="offline-content">
+            <div class="broken-frame-container">
+                <div class="broken-frame"></div>
+                <i class="fa-solid fa-wifi-slash offline-icon"></i>
+            </div>
+            <h1 class="offline-title" data-i18n="offline_title">Connection Lost</h1>
+            <p class="offline-text" data-i18n="offline_text">It seems the frame bridge is temporarily down. Check your
+                connection to continue framing.</p>
+            <button class="retry-btn" onclick="location.reload()" data-i18n="offline_retry">Retry Connection</button>
         </div>
     </div>
 </body>
