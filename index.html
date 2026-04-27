@@ -29,7 +29,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
         :root {
             /* DEFAULT (LIGHT) THEME */
@@ -2610,13 +2611,7 @@
     </nav>
 
     <script>
-        // ==========================================
-        // DYNAMIC CATALOG MANAGEMENT (GOOGLE DRIVE)
-        // ==========================================
-        // Paste your Deployed Web App URL here after setting up script.google.com
-        const DRIVE_CATALOG_URL = "https://script.google.com/macros/s/AKfycbwJFU958yZz1fZ9NvGD-dSMLZvlmK7JfVDMPU4iXCQUbFHljMHGKivKXf4IlcEHOXRg/exec"; 
-
-        let products = [
+        const products = [
             { id: 1, name: "Swami Samarth frame", price: 450, cat: "god", img: "https://i.ibb.co/ycFpPkdv/swami.png" },
             { id: 2, name: "Antique Gold Mirror", price: 150, cat: "mirror", img: "https://i.ibb.co/dsgVCgXv/mirror01.png" },
             { id: 3, name: "Abstract Decor Set", price: 450, cat: "decor", img: "https://i.ibb.co/5Wy5sv3q/decor01.png" },
@@ -2644,27 +2639,6 @@
             { id: 25, name: "Dr. Babasaheb Ambedkar photo frame.", price: 950, cat: "Dr. Ambedkar", img: "https://i.ibb.co/bM6DQzgc/ambedkar1.jpg" },
             { id: 26, name: "Dr. Babasaheb Ambedkar Black Border photo frame.", price: 950, cat: "Dr. Ambedkar", img: "https://i.ibb.co/yBpBc30r/ambedkar2.jpg" },
         ];
-
-        async function fetchManagedProducts() {
-            if (!DRIVE_CATALOG_URL) return;
-            
-            try {
-                const response = await fetch(DRIVE_CATALOG_URL);
-                const driveProducts = await response.json();
-                
-                if (driveProducts && driveProducts.length > 0) {
-                    // Prepend new products from Drive to our static list
-                    products = [...driveProducts, ...products];
-                    
-                    // Re-render UI to show new items
-                    renderHome();
-                    applyShopFilter('all');
-                    console.log("Successfully synced catalog with Google Drive.");
-                }
-            } catch (error) {
-                console.warn("Google Drive Catalog Sync Failed:", error);
-            }
-        }
 
         // Multilingual Setup
         const i18n = {
@@ -2832,7 +2806,6 @@
 
             applyShopFilter('all');
             renderHome();
-            fetchManagedProducts();
             updateOnlineStatus();
 
             window.addEventListener('online', updateOnlineStatus);
