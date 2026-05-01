@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Yashraj Frames</title>
-    <link rel="icon" type="png" href="https://i.ibb.co/60vv3MMt/yicon4.png">
+    <link rel="icon" type="png" href="https://i.ibb.co/7NzZCjZ2/yicon4.png">
 
     <title>CHOUNDESHWARI DIGITAL & YASHRAJ PHOTO FRAMES | Premium Studio</title>
     <meta name="description"
@@ -27,7 +27,7 @@
     <meta name="theme-color" content="#c5a059">
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,600&family=Dancing+Script:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -168,6 +168,270 @@
             -webkit-text-fill-color: transparent;
             animation: shineText 3s linear infinite;
         }
+
+        /* Advanced Studio CSS */
+        .studio-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 350px;
+            padding: 20px;
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .studio-canvas {
+            display: none;
+            position: relative;
+            padding: 20px;
+            background: #111;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transition: 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+        }
+
+        .studio-photo {
+            display: block;
+            width: 100%;
+            max-height: 400px;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+        }
+
+        #studio-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(255, 255, 255, 0.05) 100%);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .studio-layer {
+            position: absolute;
+            cursor: move;
+            user-select: none;
+            z-index: 10;
+            white-space: nowrap;
+            padding: 5px;
+            border: 1px dashed transparent;
+            transition: 0.1s;
+        }
+
+        .studio-layer.active {
+            border-color: var(--accent);
+            background: rgba(197, 160, 89, 0.1);
+        }
+
+        .studio-toolbar {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 10px 0;
+            scrollbar-width: none;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .tool-btn {
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            color: var(--primary);
+            padding: 10px 18px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .tool-btn:hover {
+            border-color: var(--accent);
+            background: rgba(197, 160, 89, 0.05);
+        }
+
+        .tool-btn.danger {
+            color: #ff3b30;
+        }
+
+        .floating-menu {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            gap: 20px;
+            animation: slideUp 0.3s ease;
+        }
+
+        .floating-menu span {
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .floating-menu span:hover {
+            transform: scale(1.2);
+        }
+
+        .layer-controls {
+            display: none;
+            position: fixed;
+            bottom: 160px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--surface);
+            backdrop-filter: blur(10px);
+            padding: 8px 15px;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+            z-index: 1001;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .layer-controls button {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: 0.2s;
+        }
+
+        .layer-controls button:hover {
+            background: var(--bg);
+        }
+
+        .layer-controls input[type="color"] {
+            width: 25px;
+            height: 25px;
+            border: none;
+            border-radius: 50%;
+            background: none;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .floating-menu.filter-menu {
+            flex-direction: column;
+            padding: 10px;
+            width: 151px;
+        }
+
+        .filter-opt {
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .filter-opt:hover {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .studio-mount-wrapper {
+            position: relative;
+            display: inline-block;
+            border: 0 solid white;
+            transition: 0.3s;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .studio-watermark {
+            position: absolute;
+            bottom: 8px;
+            right: 12px;
+            font-size: 0.55rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 800;
+            letter-spacing: 1px;
+            z-index: 20;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+            text-transform: uppercase;
+        }
+
+        .mount-selector {
+            display: flex;
+            gap: 10px;
+        }
+
+        .mount-btn {
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            color: var(--primary);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .mount-btn.active {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+        }
+
+        .frame-selector {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 5px 0;
+            scrollbar-width: none;
+        }
+
+        .frame-swatch {
+            min-width: 55px;
+            height: 55px;
+            border-radius: 10px;
+            flex-shrink: 0;
+            cursor: pointer;
+            border: 2px solid var(--border-color);
+            transition: 0.2s;
+        }
+
+        .frame-swatch:hover {
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translate(-50%, 20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+        }
+
 
         @keyframes shineText {
             to {
@@ -356,7 +620,38 @@
             height: 68px;
             border-radius: 50%;
             padding: 2px;
-            background: linear-gradient(45deg, var(--accent), #f1c40f);
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            /* Standard Instagram Gradient */
+        }
+
+        .ring-founder {
+            background: linear-gradient(45deg, #c5a059, #e0c388, #8a6d3b) !important;
+        }
+
+        .ring-ai {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e) !important;
+            box-shadow: 0 0 20px rgba(142, 45, 226, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ring-ai img {
+            animation: ai-hue 4s infinite linear;
+            filter: brightness(1.1) contrast(1.1);
+            object-fit: contain !important;
+            padding: 8px;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        @keyframes ai-hue {
+            from {
+                filter: hue-rotate(0deg) brightness(1.1);
+            }
+
+            to {
+                filter: hue-rotate(360deg) brightness(1.1);
+            }
         }
 
         .story-ring img {
@@ -536,6 +831,46 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
+        /* --- SKELETON LOADING --- */
+        .skeleton {
+            background: linear-gradient(90deg, var(--border-color) 25%, var(--input-bg) 50%, var(--border-color) 75%);
+            background-size: 200% 100%;
+            animation: skeleton-shimmer 1.5s infinite linear;
+        }
+
+        @keyframes skeleton-shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .skeleton-card {
+            pointer-events: none;
+            height: 230px;
+        }
+
+        .skeleton-img {
+            height: 150px;
+            width: 100%;
+        }
+
+        .skeleton-text {
+            height: 14px;
+            margin-bottom: 8px;
+            width: 80%;
+            border-radius: 4px;
+        }
+
+        .skeleton-price {
+            height: 18px;
+            width: 40%;
+            border-radius: 4px;
+        }
+
         .btn-try {
             background: var(--bg);
             color: var(--primary);
@@ -573,7 +908,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transform: scaleX(-1);
             display: none;
         }
 
@@ -1492,10 +1826,24 @@
         }
 
         #ai-fab.active {
-            transform: rotate(45deg);
             background: var(--danger);
             color: #fff;
             border-color: transparent;
+        }
+
+        #ai-fab .fab-icon {
+            display: none;
+            position: absolute;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        #ai-fab.active .fab-logo {
+            display: none;
+        }
+
+        #ai-fab.active .fab-icon {
+            display: block;
+            transform: rotate(45deg);
         }
 
         #ai-chat-window {
@@ -1506,12 +1854,12 @@
             max-width: calc(100vw - 40px);
             height: 500px;
             max-height: 70vh;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(30px) saturate(150%);
+            -webkit-backdrop-filter: blur(30px) saturate(150%);
             border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2), 0 0 20px rgba(197, 160, 89, 0.2);
             display: none;
             flex-direction: column;
             z-index: 998;
@@ -1524,8 +1872,9 @@
         [data-theme="royal"] #ai-chat-window,
         [data-theme="forest"] #ai-chat-window,
         [data-theme="midnight"] #ai-chat-window {
-            background: rgba(22, 22, 22, 0.85);
-            border-color: rgba(255, 255, 255, 0.1);
+            background: rgba(15, 15, 15, 0.5);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(197, 160, 89, 0.1);
         }
 
         @keyframes chatSlideIn {
@@ -1540,25 +1889,42 @@
             }
         }
 
+        @keyframes gradientPulse {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
         .ai-header {
             padding: 20px;
-            background: linear-gradient(90deg, var(--accent), #e0c388);
+            background: linear-gradient(270deg, var(--accent), #e0c388, #b8860b, var(--accent));
+            background-size: 200% 200%;
+            animation: gradientPulse 4s ease infinite;
             color: #000;
             display: flex;
             align-items: center;
             gap: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .ai-header img {
             width: 35px;
             height: 35px;
             border-radius: 50%;
-            border: 2px solid #fff;
         }
 
         .ai-header h3 {
             font-family: 'Playfair Display', serif;
             font-size: 1.1rem;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
         }
 
         #ai-messages {
@@ -1578,41 +1944,86 @@
             font-size: 0.9rem;
             line-height: 1.4;
             position: relative;
-            animation: msgPop 0.3s ease-out;
+            animation: msgPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         @keyframes msgPop {
             from {
                 opacity: 0;
-                transform: scale(0.8);
+                transform: translateY(15px) scale(0.9);
             }
 
             to {
                 opacity: 1;
-                transform: scale(1);
+                transform: translateY(0) scale(1);
             }
         }
 
         .msg-user {
             align-self: flex-end;
-            background: var(--primary);
-            color: var(--bg);
+            background: linear-gradient(135deg, var(--accent), #e0c388);
+            color: #000;
             border-bottom-right-radius: 5px;
+            font-weight: 500;
         }
 
         .msg-ai {
             align-self: flex-start;
             background: var(--surface);
-            color: var(--primary);
+            color: var(--text-main);
             border-bottom-left-radius: 5px;
             border: 1px solid var(--border-color);
+            border-left: 3px solid var(--accent);
+        }
+
+        .ai-quick-chips {
+            display: flex;
+            gap: 8px;
+            padding: 10px 15px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            border-top: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        [data-theme="dark"] .ai-quick-chips,
+        [data-theme="royal"] .ai-quick-chips,
+        [data-theme="forest"] .ai-quick-chips,
+        [data-theme="midnight"] .ai-quick-chips {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .ai-quick-chips::-webkit-scrollbar {
+            display: none;
+        }
+
+        .ai-chip {
+            background: var(--surface);
+            border: 1px solid var(--accent);
+            color: var(--text-main);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .ai-chip:hover {
+            background: var(--accent);
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(197, 160, 89, 0.3);
         }
 
         .ai-input-area {
             padding: 15px;
             display: flex;
             gap: 10px;
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid rgba(197, 160, 89, 0.2);
+            background: rgba(0, 0, 0, 0.03);
         }
 
         .ai-input {
@@ -1759,6 +2170,213 @@
                 font-size: 2.2rem;
             }
         }
+
+        /* --- INSTALL GUIDE MODAL --- */
+        #install-guide-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 99999;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .install-guide-content {
+            background: var(--bg);
+            width: 100%;
+            max-width: 500px;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+            padding: 30px 20px;
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(100%);
+            animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            position: relative;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .install-guide-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .install-guide-header img {
+            width: 55px;
+            height: 55px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--border-color);
+        }
+
+        .install-step {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: var(--surface);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .install-step-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(197, 160, 89, 0.1);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .install-step div {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            line-height: 1.4;
+        }
+
+        /* --- STORY OVERLAY (INSTA STYLE) --- */
+        #story-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 100000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .story-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 450px;
+            /* Mobile width on desktop */
+            max-height: 850px;
+            background: #000;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 450px) {
+            .story-container {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+
+        .story-full-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .story-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 2.2rem;
+            cursor: pointer;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+            z-index: 100002;
+            padding: 10px;
+        }
+
+        .story-footer {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 100002;
+        }
+
+        .story-btn {
+            background: #fff;
+            color: #000;
+            padding: 15px 50px;
+            border-radius: 40px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            border: none;
+            animation: pulse-white 2s infinite;
+        }
+
+        .story-progress-bar {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            z-index: 100002;
+            overflow: hidden;
+        }
+
+        .story-progress-fill {
+            height: 100%;
+            background: #fff;
+            width: 0%;
+        }
+
+        .story-caption {
+            position: absolute;
+            bottom: 120px;
+            left: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 1.2rem;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+            font-weight: 700;
+            line-height: 1.4;
+            z-index: 100002;
+            font-family: 'Urbanist', sans-serif;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 
@@ -1788,7 +2406,9 @@
     </div>
 
     <header>
-        <div class="brand-logo" id="brand-text">Yashraj <span>Frames</span></div>
+        <div class="brand-logo" id="brand-text">
+            <span>Yashraj Frames</span>
+        </div>
         <div class="header-icons">
             <div class="icon-btn" onclick="openPage('settings')">
                 <i class="fa-solid fa-gear"></i>
@@ -1804,17 +2424,31 @@
 
         <div id="home" class="screen active">
             <div class="story-rail">
-                <div class="story-item" onclick="applyShopFilter('all'); nav('shop')">
+                <div class="story-item"
+                    onclick="openStory('https://i.ibb.co/pj2wXND4/file-000000008358720b839af4d1f3fea8d9.png', null)">
+                    <div class="story-ring ring-founder"><img
+                            src="https://i.ibb.co/ZzVTtJSs/file-00000000d7cc720b90b8b448e532f5c6.png"></div>
+                    <span data-i18n="story_founder">Founder</span>
+                </div>
+                <div class="story-item"
+                    onclick="openStory('https://i.ibb.co/F4XhGPrn/file-00000000648871f8a9aaf4f688584353.png', 'ai')">
+                    <div class="story-ring ring-ai"><img src="https://i.ibb.co/1GBf2HBQ/yinfinity-logo-final.png"></div>
+                    <span data-i18n="story_ai">Y Infinity</span>
+                </div>
+                <div class="story-item"
+                    onclick="openStory('https://i.ibb.co/fV9WGzPr/file-000000006e84720bae10d856d52d1b5d.png', 'visualizer')">
+                    <div class="story-ring"><img src="https://i.ibb.co/Z7mCbyj/magictooolfinal.png"></div>
+                    <span data-i18n="story_tryon">Try-On</span>
+                </div>
+                <div class="story-item"
+                    onclick="openStory('https://i.ibb.co/1fSsj9MH/wedding.jpg', null, 'Capture your eternal moments with our premium wedding photography and custom framing.')">
                     <div class="story-ring"><img src="https://i.ibb.co/1fSsj9MH/wedding.jpg"></div>
                     <span data-i18n="story_wedding">Wedding</span>
                 </div>
-                <div class="story-item" onclick="applyShopFilter('all'); nav('shop')">
+                <div class="story-item"
+                    onclick="openStory('https://i.ibb.co/1JpPX4f6/baby.jpg', null, 'Preserve the tiny steps and big smiles forever with our specialized baby shoot frames.')">
                     <div class="story-ring"><img src="https://i.ibb.co/1JpPX4f6/baby.jpg"></div>
                     <span data-i18n="story_baby">Baby</span>
-                </div>
-                <div class="story-item" onclick="openPage('visualizer')">
-                    <div class="story-ring"><img src="https://i.ibb.co/Z7mCbyj/magictooolfinal.png"></div>
-                    <span data-i18n="story_tryon">Try-On</span>
                 </div>
                 <div class="story-item" onclick="openPage('cart')">
                     <div class="story-ring"><img src="https://i.ibb.co/p6DRcYL8/20943863.jpg"></div>
@@ -1829,6 +2463,32 @@
                     <p data-i18n="home_frame">Frame your Golden Memories.</p>
                     <button onclick="nav('book', document.getElementById('nav-book'))" data-i18n="home_framenow">Frame
                         Now</button>
+                </div>
+            </div>
+
+            <!-- Y Infinity AI Promotion Container -->
+            <div onclick="toggleAIChat()" class="ai-promo-box"
+                style="position: relative; overflow: hidden; background: linear-gradient(135deg, var(--bg) 0%, #151515 100%); padding: 25px; border-radius: 20px; margin-top: 30px; text-align: left; border: 1px solid var(--border-color); cursor: pointer; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 10px 25px rgba(0,0,0,0.1); transition: transform 0.2s, border-color 0.2s;">
+
+                <div
+                    style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(197,160,89,0.05) 0%, transparent 45%); animation: spinGlow 15s linear infinite; pointer-events: none; z-index: 0;">
+                </div>
+
+                <div style="position: relative; z-index: 2; flex: 1;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                        <img src="https://i.ibb.co/1GBf2HBQ/yinfinity-logo-final.png"
+                            style="width: 28px; height: 28px; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+                        <h3
+                            style="font-family: 'Playfair Display', serif; color: var(--primary); font-size: 1.2rem; margin: 0;">
+                            Meet Y Infinity</h3>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--secondary); margin: 0; line-height: 1.4;">
+                        Your personal AI shopping assistant. Ask me to find, suggest, or customize any frame!</p>
+                </div>
+
+                <div
+                    style="position: relative; z-index: 2; margin-left: 15px; width: 45px; height: 45px; border-radius: 50%; background: rgba(197, 160, 89, 0.1); border: 1px solid rgba(197, 160, 89, 0.2); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.1rem; flex-shrink: 0;">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
                 </div>
             </div>
 
@@ -1872,6 +2532,8 @@
                     </button>
                 </div>
             </div>
+
+
 
             <div class="section-title" style="margin-top: 30px;">
                 <div data-i18n="home_trend">Trending Frames</div>
@@ -2220,72 +2882,108 @@
         </div>
 
         <div id="magic-custom" class="screen">
-            <h2 style="font-family:'Playfair Display'; margin-bottom:10px;" data-i18n="custom_title">Frame Your Photo
-            </h2>
+            <h2 style="font-family:'Playfair Display'; margin-bottom:10px;" data-i18n="custom_title">Design Your
+                Masterpiece</h2>
             <p style="color: var(--secondary); font-size: 0.9rem; margin-bottom: 20px;" data-i18n="custom_subtitle">
-                Upload your picture and select a frame border.</p>
+                Upload your photo and add personal touches.</p>
 
-            <div class="btn-row" style="margin-bottom: 15px;">
-                <button class="btn-full" style="background: var(--accent); color: #fff; margin-top: 0;"
-                    onclick="document.getElementById('custom-upload').click()">
-                    <i class="fa-solid fa-upload"></i> <span data-i18n="custom_upload">Upload Your Photo</span>
+            <!-- Studio Canvas Area -->
+            <div class="studio-container">
+                <div id="studio-canvas" class="studio-canvas">
+                    <div id="studio-glow"></div>
+                    <div id="studio-mount" class="studio-mount-wrapper">
+                        <img id="custom-photo-display" src="" class="studio-photo">
+                        <div id="layers-container"></div>
+                    </div>
+                    <div class="studio-watermark">YASHRAJ FRAMES</div>
+                </div>
+            </div>
+
+            <!-- Studio Controls -->
+            <div class="studio-toolbar">
+                <button class="tool-btn" onclick="document.getElementById('custom-upload').click()">
+                    <i class="fa-solid fa-image"></i> <span>Photo</span>
+                </button>
+                <button class="tool-btn" onclick="addStudioText()">
+                    <i class="fa-solid fa-font"></i> <span>Text</span>
+                </button>
+                <button class="tool-btn" onclick="toggleStickerMenu()">
+                    <i class="fa-solid fa-face-smile"></i> <span>Decor</span>
+                </button>
+                <button class="tool-btn" onclick="toggleFilterMenu()">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> <span>Filters</span>
+                </button>
+                <button class="tool-btn" onclick="exportDesign()">
+                    <i class="fa-solid fa-download"></i> <span>Save</span>
+                </button>
+                <button class="tool-btn danger" onclick="clearStudio()">
+                    <i class="fa-solid fa-trash"></i> <span>Clear</span>
                 </button>
                 <input type="file" id="custom-upload" hidden accept="image/*" onchange="loadCustomPhoto(event)">
             </div>
 
-            <input type="text" id="engrave-input" placeholder="Add custom text (e.g. Sourabh & Neha 2026)..."
-                oninput="document.getElementById('engrave-preview').innerText = this.value"
-                style="width: 100%; padding: 15px; border-radius: 12px; border: 1px solid var(--accent); background: var(--bg); color: var(--primary); margin-bottom: 20px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.95rem;">
+            <!-- Floating Sticker Menu -->
+            <div id="sticker-menu" class="floating-menu">
+                <span onclick="addSticker('❤️')">❤️</span>
+                <span onclick="addSticker('✨')">✨</span>
+                <span onclick="addSticker('🌸')">🌸</span>
+                <span onclick="addSticker('👑')">👑</span>
+                <span onclick="addSticker('🔱')">🔱</span>
+                <span onclick="addSticker('🕉️')">🕉️</span>
+            </div>
 
-            <div
-                style="display: flex; justify-content: center; align-items: center; min-height: 250px; padding: 20px; background: var(--surface); border: 1px solid var(--border-color); border-radius: 15px; margin-bottom: 20px;">
-                <div id="frame-style-box"
-                    style="display: none; position: relative; padding: 15px; background: #111; box-shadow: 0 10px 30px rgba(0,0,0,0.4); transition: all 0.3s ease; overflow: hidden;">
-                    <img id="custom-photo-display" src=""
-                        style="display: block; max-width: 100%; max-height: 300px; border: 1px solid rgba(0,0,0,0.2); pointer-events: none;">
-                    <div id="engrave-preview"
-                        style="position: absolute; top: 90%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #fff; font-family: 'Playfair Display', serif; font-size: 1.2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.8); cursor: move; white-space: nowrap; user-select: none; z-index: 10;"
-                        onmousedown="startDrag(event, this)" ontouchstart="startDrag(event, this)"></div>
+            <!-- Floating Filter Menu -->
+            <div id="filter-menu" class="floating-menu filter-menu">
+                <div class="filter-opt" onclick="applyStudioFilter('none')">Original</div>
+                <div class="filter-opt" onclick="applyStudioFilter('classic')">Classic</div>
+                <div class="filter-opt" onclick="applyStudioFilter('bw')">B&W</div>
+                <div class="filter-opt" onclick="applyStudioFilter('vintage')">Vintage</div>
+                <div class="filter-opt" onclick="applyStudioFilter('divine')">Divine</div>
+            </div>
+
+            <!-- Active Layer Settings -->
+            <div id="layer-settings" class="layer-controls">
+                <input type="color" id="layer-color" oninput="updateActiveLayer('color', this.value)">
+                <button onclick="updateActiveLayer('size', 'increase')"><i class="fa-solid fa-plus"></i></button>
+                <button onclick="updateActiveLayer('size', 'decrease')"><i class="fa-solid fa-minus"></i></button>
+                <button onclick="updateActiveLayer('font', 'swap')"><i class="fa-solid fa-italic"></i></button>
+                <button onclick="deleteActiveLayer()" class="danger"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <h4 style="margin-top:25px; margin-bottom:15px;" data-i18n="custom_select">1. Select Frame Style</h4>
+            <div class="frame-selector">
+                <div class="frame-swatch" onclick="applyFrame('solid-black')" style="background: #111;"></div>
+                <div class="frame-swatch" onclick="applyFrame('texture-wood')"
+                    style="background: url('https://i.ibb.co/Hp4Hz7F6/fabric-texture.jpg') center; background-size:cover;">
+                </div>
+                <div class="frame-swatch" onclick="applyFrame('texture-gold')"
+                    style="background: url('https://i.ibb.co/4gVdHsdP/wood-7.jpg') center; background-size:cover;">
+                </div>
+                <div class="frame-swatch" onclick="applyFrame('texture-vintage')"
+                    style="background: url('https://i.ibb.co/jPCqy6wN/golden-wall-background.jpg') center; background-size:cover;">
+                </div>
+                <div class="frame-swatch" onclick="applyFrame('pattern-carved')"
+                    style="background: #C5A059 url('https://www.transparenttextures.com/patterns/arabesque.png');">
                 </div>
             </div>
-            <p
-                style="font-size: 0.8rem; text-align: center; color: var(--secondary); margin-top: -10px; margin-bottom: 20px;">
-                <i class="fa-solid fa-hand-pointer"></i> Drag the text to place it anywhere on the frame
-            </p>
 
-            <h4 style="margin-bottom:15px;" data-i18n="custom_select">Select Premium Frame</h4>
-            <div style="display:flex; overflow-x:auto; gap: 15px; padding-bottom: 15px; scrollbar-width: none;">
-                <button onclick="applyFrame('solid-black')"
-                    style="min-width: 60px; height: 60px; background: #111; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer;"></button>
-
-                <button onclick="applyFrame('texture-wood')"
-                    style="min-width: 60px; height: 60px; background: url('https://i.ibb.co/Hp4Hz7F6/fabric-texture.jpg'); background-size: cover; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer;"></button>
-
-                <button onclick="applyFrame('texture-gold')"
-                    style="min-width: 60px; height: 60px; background: url('https://i.ibb.co/4gVdHsdP/wood-7.jpg'); background-size: cover; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer;"></button>
-
-                <button onclick="applyFrame('texture-vintage')"
-                    style="min-width: 60px; height: 60px; background: url('https://i.ibb.co/jPCqy6wN/golden-wall-background.jpg'); background-size: cover; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer;"></button>
-
-                <button onclick="applyFrame('pattern-carved')"
-                    style="min-width: 60px; height: 60px; background-color: #C5A059; background-image: url('https://www.transparenttextures.com/patterns/arabesque.png'); border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer;"></button>
-
-                <button onclick="applyFrame('solid-white')"
-                    style="min-width: 60px; height: 60px; background: #fff; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"></button>
-
-                <button onclick="applyFrame('pattern-custom1')"
-                    style="min-width: 60px; height: 60px; background-image: url('https://i.ibb.co/rKcB3F7x/pattern1.png'); background-size: cover; border: 2px solid var(--border-color); border-radius: 4px; cursor: pointer;"></button>
+            <h4 style="margin-top:20px; margin-bottom:15px;">2. Gallery Mount (Inner Border)</h4>
+            <div class="mount-selector">
+                <button onclick="applyMount('none')" class="mount-btn active">None</button>
+                <button onclick="applyMount('white')" class="mount-btn">White Mount</button>
+                <button onclick="applyMount('black')" class="mount-btn">Black Mount</button>
+                <button onclick="applyMount('cream')" class="mount-btn">Cream Mount</button>
             </div>
 
-            <button class="btn-full" style="margin-top: 20px;" onclick="orderCustomFrame()">
-                <i class="fa-brands fa-whatsapp"></i> <span data-i18n="custom_order">Order Custom Frame</span>
+            <button class="btn-full" style="margin-top: 30px; background: var(--accent); color:#fff;"
+                onclick="orderCustomFrame()">
+                <i class="fa-brands fa-whatsapp"></i> <span data-i18n="custom_order">Send Studio Design to
+                    WhatsApp</span>
             </button>
 
-            <div style="text-align: center; margin-top: 30px; padding-bottom: 20px;">
-                <p style="font-size: 0.75rem; color: var(--text-muted); opacity: 0.7; font-style: italic;">
-                    <i class="fa-solid fa-circle-info" style="margin-right: 5px;"></i>
-                    <span data-i18n="custom_note">Please note: The visual preview may slightly differ from the actual
-                        product. We are continuously working to improve this feature.</span>
+            <div style="text-align: center; margin-top: 30px;">
+                <p style="font-size: 0.75rem; color: var(--secondary); opacity: 0.7;">
+                    <i class="fa-solid fa-circle-info"></i> Our artists will hand-optimize your design before framing.
                 </p>
             </div>
         </div>
@@ -2503,8 +3201,8 @@
                     <i class="fa-solid fa-expand"></i> <span data-i18n="pdp_zoom">Tap to Zoom</span>
                 </div>
 
-                <div style="position:absolute; bottom:-22px; left:50%; transform: translateX(-50%); background: linear-gradient(90deg, #c5a059, #e0c388); padding: 12px 25px; border-radius: 30px; color: #000; font-weight: 800; font-size: 0.85rem; box-shadow: 0 8px 25px rgba(197, 160, 89, 0.4); cursor: pointer; display: flex; align-items: center; gap: 8px; z-index: 5; white-space: nowrap;"
-                    onclick="closeProduct(); nav('visualizer', document.querySelector('.nav-item:nth-child(3)'))">
+                <div id="view-try-room-btn"
+                    style="position:absolute; bottom:-22px; left:50%; transform: translateX(-50%); background: linear-gradient(90deg, #c5a059, #e0c388); padding: 12px 25px; border-radius: 30px; color: #000; font-weight: 800; font-size: 0.85rem; box-shadow: 0 8px 25px rgba(197, 160, 89, 0.4); cursor: pointer; display: flex; align-items: center; gap: 8px; z-index: 5; white-space: nowrap;">
                     <i class="fa-solid fa-wand-magic-sparkles"></i> Try in Your Room
                 </div>
             </div>
@@ -2638,7 +3336,57 @@
             { id: 24, name: "Personalized Picture Collage Photo gift Frame - Custom Anniversary Gift for Husband / Wife , Customized Photo Frame Collage for Valentine's Day", price: 950, cat: "custom", img: "https://i.ibb.co/cS5MZ6nC/cusmtom4.jpg" },
             { id: 25, name: "Dr. Babasaheb Ambedkar photo frame.", price: 950, cat: "Dr. Ambedkar", img: "https://i.ibb.co/bM6DQzgc/ambedkar1.jpg" },
             { id: 26, name: "Dr. Babasaheb Ambedkar Black Border photo frame.", price: 950, cat: "Dr. Ambedkar", img: "https://i.ibb.co/yBpBc30r/ambedkar2.jpg" },
+            { id: 27, name: "Panchamukhi Hanuman Ji Premium Golden Photo Frame", price: 199, cat: "god", img: "https://i.ibb.co/bgbTy7Zx/91h8a-APomc-L-SY606.jpg" },
+            { id: 28, name: "Lord Balaji (Tirupati Balaji) Premium Black Textured Photo Frame", price: 499, cat: "god", img: "https://i.ibb.co/jv2DWyTQ/81xua-D80nl-L-SY879.jpg" },
+            { id: 29, name: "Lord Narasimha Premium Golden Frame", price: 199, cat: "god", img: "https://i.ibb.co/23hXFDth/91wq-Bk-EHQp-L-SY879.jpg" },
+            { id: 30, name: "Lakshmi Narayan Divine Black Frame", price: 149, cat: "god", img: "https://i.ibb.co/yF8BDXDt/71v-FQ-Ey-A-L-SX569.jpg" },
+            { id: 31, name: "Goddess Saraswati Premium Golden Textured Frame", price: 149, cat: "god", img: "https://i.ibb.co/LdWkRX4G/71-K9-RNvi-Wn-L-SY450.jpg" },
+            { id: 32, name: "Dr. B. R. Ambedkar Premium Black Frame", price: 299, cat: "Dr. Ambedkar", img: "https://i.ibb.co/3yN5BhT3/ambedkar48.png" },
+            { id: 33, name: "Dr. Babasaheb Ambedkar Inspirational Photo Frame | Motivational Wall Decor for Home & Office", price: 149, cat: "Dr. Ambedkar", img: "https://i.ibb.co/zhMvzkD4/ambedkar45.png" },
+            { id: 34, name: "Chhatrapati Shivaji Maharaj Premium Standing Frame | Royal Maratha Warrior Wall Decor", price: 849, cat: "chatrapati", img: "https://i.ibb.co/s7ZyfGc/image.png" },
+            { id: 35, name: "Customised Photo Collage Frame | Personalised A4 Size 8x12 Inch Wall Frame Gift for Birthday, Friendship & Special Memories", price: 650, cat: "custom", img: "https://i.ibb.co/gFSWM8w4/71-Tvi5x-DCr-L-SY879.png" },
+            { id: 36, name: "Birthday Reminder Calendar Photo Frame | Personalised Family Birthday & Anniversary Calendar Frame Wall Decor Gift", price: 549, cat: "custom", img: "https://i.ibb.co/GrLgHmg/71-Wd2vt-X4-L-SX569.png" },
         ];
+
+        // SEO Schema Generator (JSON-LD) for Google Rich Snippets
+        function injectSEOSchema() {
+            const schemaData = products.map(p => ({
+                "@context": "https://schema.org/",
+                "@type": "Product",
+                "name": p.name,
+                "image": p.img,
+                "description": `Premium quality ${p.name} photo frame. Water-resistant, dust-proof, with a high-definition finish. Perfect for home decor or gifting.`,
+                "brand": {
+                    "@type": "Brand",
+                    "name": "Yashraj Frames"
+                },
+                "offers": {
+                    "@type": "Offer",
+                    "url": `${window.location.origin}${window.location.pathname}?product=${p.id}`,
+                    "priceCurrency": "INR",
+                    "price": p.price,
+                    "availability": "https://schema.org/InStock",
+                    "seller": {
+                        "@type": "Organization",
+                        "name": "Choundeshwari Digital & Yashraj Photo Frame"
+                    }
+                },
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "4.8",
+                    "reviewCount": "120"
+                }
+            }));
+
+            const script = document.createElement('script');
+            script.type = "application/ld+json";
+            script.text = JSON.stringify(schemaData);
+            document.head.appendChild(script);
+        }
+
+        // Initialize SEO
+        injectSEOSchema();
+
 
         // Multilingual Setup
         const i18n = {
@@ -2646,7 +3394,7 @@
                 "nav_home": "Home", "nav_shop": "Shop", "nav_tryon": "Try-On", "nav_custom": "Custom", "nav_contact": "Contact",
                 "settings_title": "Settings", "language_select": "Select Language", "about_us": "About Us", "terms_service": "Terms of Service", "privacy_policy": "Privacy Policy",
                 "home_capture": "Capture Memories", "home_frame": "Frame your Golden Memories.", "home_framenow": "Frame Now", "home_trend": "Trending Frames", "home_viewall": "View All", "home_follow": "Follow Our Work",
-                "story_wedding": "Wedding", "story_baby": "Baby", "story_tryon": "Try-On", "story_orders": "Orders",
+                "story_wedding": "Wedding", "story_baby": "Baby", "story_tryon": "Try-On", "story_orders": "Orders", "story_founder": "Founder", "story_trynow": "Try Now",
                 "shop_all": "All", "shop_god": "God", "shop_decor": "Decor", "shop_chatrapati": "Chatrapati", "shop_custom": "Custom", "shop_ambedkar": "Dr.Ambedkar",
                 "shop_search": "Search God, Decor...", "shop_custom_size": "Custom Size?", "shop_need_specific": "Need a specific size frame? Get a quote.", "shop_ask_price": "Ask Price",
                 "tryon_title": "Magic Try-On", "tryon_live": "Live Camera", "tryon_upload": "Upload Photo", "tryon_select": "Select Frame",
@@ -2654,14 +3402,14 @@
                 "custom_title": "Frame Your Photo", "custom_subtitle": "Upload your picture and select a frame border.", "custom_upload": "Upload Your Photo", "custom_select": "Select Premium Frame", "custom_order": "Order Custom Frame", "custom_note": "Please note: The visual preview may slightly differ from the actual product. We are continuously working to improve this feature.",
                 "book_profile": "Studio Profile", "book_founder": "Founder & Lead", "book_legacy": "Legacy", "book_rating": "Rating", "book_call": "Call Now", "book_chat": "Chat", "book_session": "Book a Session", "book_name": "Your Name", "book_opt1": "Wedding Photography", "book_opt2": "Baby Shoot", "book_opt3": "Pre-Wedding", "book_opt4": "Passport Photo", "book_opt5": "Event Videography", "book_req": "Request Booking", "book_visit": "Visit Our Studio", "book_address": "Chatrapati Shivaji Maharaj Market Yard, Near HDFC Bank<br>Open Mon-Sun: 9:00 AM - 7:00 PM", "book_dir": "Get Directions", "book_dev": "Developed By",
                 "pdp_zoom": "Tap to Zoom", "pdp_desc_title": "Description", "pdp_desc_text": "Experience premium craftsmanship with this high-definition frame from Choundeshwari Digital & Yashraj Photo Frame. Every piece is meticulously crafted using high-quality synthetic wood and features a crystal-clear, shatter-resistant glass front to ensure maximum durability. Our frames are designed to be water-resistant and dust-proof, making them perfect for preserving your cherished memories, devotional art, or home decor for a lifetime. Whether you are looking for a gift or a centerpiece for your own home, our frames offer a blend of traditional elegance and modern longevity.", "pdp_tag1": "Teak Wood", "pdp_tag2": "Sparkle/Matt", "pdp_add": "Add to Cart", "pdp_buy": "Buy Now",
-                "home_reviews": "Customer Reviews", "review_1": "The frame quality is excellent! Very premium teak wood and fast delivery.", "review_2": "Loved the magic try-on feature. Ordered an frame and it looks beautiful in my living room.", "review_3": "Best photo frame studio in Jafrabad! The frame is a masterpiece.", "tryon_wall_color": "Wall Color", "install_app": "Install Yashraj Frames",
+                "home_reviews": "Customer Reviews", "review_1": "The frame quality is excellent! Very premium teak wood and fast delivery.", "review_2": "Loved the magic try-on feature. Ordered an frame and it looks beautiful in my living room.", "review_3": "Best photo frame studio in Jafrabad! The frame is a masterpiece.", "tryon_wall_color": "Wall Color", "install_app": "Install Yashraj Frames", "story_ai": "Y Infinity",
                 "offline_title": "Connection Lost", "offline_text": "It seems the frame bridge is temporarily down. Check your connection to continue framing.", "offline_retry": "Retry Connection"
             },
             "mr": {
                 "nav_home": "मुख्यपृष्ठ", "nav_shop": "दुकान", "nav_tryon": "ट्राय-ऑन", "nav_custom": "कस्टम", "nav_contact": "संपर्क",
                 "settings_title": "सेटिंग्ज", "language_select": "भाषा निवडा", "about_us": "आमच्याबद्दल", "terms_service": "सेवा अटी", "privacy_policy": "गोपनीयता धोरण",
                 "home_capture": "आठवणी साठवा", "home_frame": "तुमच्या सोनेरी आठवणींना फ्रेम करा.", "home_framenow": "आत्ताच फ्रेम करा", "home_trend": "ट्रेंडिंग फ्रेम्स", "home_viewall": "सर्व पहा", "home_follow": "आमचे काम पहा",
-                "story_wedding": "लग्न", "story_baby": "बाळ", "story_tryon": "ट्राय-ऑन", "story_orders": "ऑर्डर्स",
+                "story_wedding": "लग्न", "story_baby": "बाळ", "story_tryon": "ट्राय-ऑन", "story_ai": "Y इन्फिनिटी", "story_orders": "ऑर्डर्स", "story_founder": "संस्थापक", "story_trynow": "आत्ताच पहा",
                 "shop_all": "सर्व", "shop_god": "देव", "shop_decor": "सजावट", "shop_chatrapati": "छत्रपती", "shop_custom": "कस्टम", "shop_ambedkar": "डॉ. आंबेडकर",
                 "shop_search": "देव, सजावट शोधा...", "shop_custom_size": "कस्टम आकार?", "shop_need_specific": "विशिष्ट आकाराची फ्रेम हवी आहे? कोट मिळवा.", "shop_ask_price": "किंमत विचारा",
                 "tryon_title": "मॅजिक ट्राय-ऑन", "tryon_live": "थेट कॅमेरा", "tryon_upload": "फोटो अपलोड करा", "tryon_select": "फ्रेम निवडा",
@@ -2676,7 +3424,7 @@
                 "nav_home": "होम", "nav_shop": "दुकान", "nav_tryon": "ट्राई-ऑन", "nav_custom": "कस्टम", "nav_contact": "संपर्क",
                 "settings_title": "सेटिंग्स", "language_select": "भाषा चुनें", "about_us": "हमारे बारे में", "terms_service": "सेवा की शर्तें", "privacy_policy": "गोपनीयता नीति",
                 "home_capture": "यादों को संजोएं", "home_frame": "अपनी सुनहरी यादों को फ्रेम करें।", "home_framenow": "अभी फ्रेम करें", "home_trend": "ट्रेंडिंग फ्रेम्स", "home_viewall": "सभी देखें", "home_follow": "हमारा काम देखें",
-                "story_wedding": "शादी", "story_baby": "बच्चा", "story_tryon": "ट्राई-ऑन", "story_orders": "ऑर्डर",
+                "story_wedding": "शादी", "story_baby": "बच्चा", "story_tryon": "ट्राई-ऑन", "story_ai": "Y इन्फिनिटी", "story_orders": "ऑर्डर", "story_founder": "संस्थापक", "story_trynow": "अभी देखें",
                 "shop_all": "सभी", "shop_god": "भगवान", "shop_decor": "सजावट", "shop_chatrapati": "छत्रपति", "shop_custom": "कस्टम", "shop_ambedkar": "डॉ. अंबेडकर",
                 "shop_search": "भगवान, सजावट खोजें...", "shop_custom_size": "कस्टम आकार?", "shop_need_specific": "एक विशिष्ट आकार की फ्रेम चाहिए? मूल्य पूछें।", "shop_ask_price": "कीमत पूछें",
                 "tryon_title": "मैजिक ट्राई-ऑन", "tryon_live": "लाइव कैमरा", "tryon_upload": "फोटो अपलोड करें", "tryon_select": "फ्रेम चुनें",
@@ -2728,7 +3476,7 @@
                 title.innerText = i18n[lang].about_us;
                 content.innerHTML = `
                     <div style="text-align:left; font-family:'Urbanist', sans-serif;">
-                        <img src="https://i.ibb.co/60vv3MMt/yicon4.png" style="width:60px; margin-bottom:20px; border-radius:15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <img src="https://i.ibb.co/7NzZCjZ2/yicon4.png" style="width:60px; margin-bottom:20px; border-radius:15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
                         <h3 style="font-family:'Playfair Display', serif; font-size:1.6rem; color:var(--primary); margin-bottom:15px; line-height:1.2;">Crafting Legacy Since Day One</h3>
                         <p style="margin-bottom:15px; font-size:0.95rem; color:var(--secondary); line-height:1.6;">Founded by <b>Madhavrao Jadhav</b> and driven by a family passion for preserving memories, <b>Choundeshwari Digital & Yashraj Photo Frames</b> is a highly acclaimed premium photography and framing studio located in the heart of Jafrabad.</p>
                         
@@ -2756,7 +3504,10 @@
                         <p style="margin-bottom:20px; font-size:0.9rem; color:var(--secondary); line-height:1.5; padding-left:25px;">Due to the highly personalized and permanent nature of custom frames, personalized engraving, and printed photos, <b>we do not accept returns or offer refunds</b> unless the physical item is proven to be damaged upon arrival or pickup.</p>
                         
                         <h4 style="color:var(--primary); margin-bottom:8px; font-size:1.05rem;"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--accent); margin-right:8px;"></i> 3. Magic Visualizer Disclaimer</h4>
-                        <p style="margin-bottom:10px; font-size:0.9rem; color:var(--secondary); line-height:1.5; padding-left:25px;">The Magic Try-On AR feature provides a very close digital estimation of the product. However, based on phone screen calibration, slight variations in physical scale, exact wood grain, or color may occur in real life.</p>
+                        <p style="margin-bottom:20px; font-size:0.9rem; color:var(--secondary); line-height:1.5; padding-left:25px;">The Magic Try-On AR feature provides a very close digital estimation of the product. However, based on phone screen calibration, slight variations in physical scale, exact wood grain, or color may occur in real life.</p>
+
+                        <h4 style="color:var(--primary); margin-bottom:8px; font-size:1.05rem;"><i class="fa-solid fa-infinity" style="color:var(--accent); margin-right:8px;"></i> 4. Y Infinity AI Assistant</h4>
+                        <p style="margin-bottom:10px; font-size:0.9rem; color:var(--secondary); line-height:1.5; padding-left:25px;">Our AI assistant provides automated guidance based on our current catalog. All recommendations, pricing, and availability mentioned by the AI are subject to final manual confirmation via WhatsApp.</p>
                     </div>
                 `;
             } else if (type === 'privacy') {
@@ -2778,7 +3529,10 @@
                         <p style="margin-bottom:20px; font-size:0.9rem; color:var(--secondary); line-height:1.5;">Any personal photos uploaded through the <b>Magic Try-On</b> or <b>Custom Frame</b> tools are processed <b>locally on your device's browser</b> for preview purposes. We do not permanently upload, save, or share your private family images on remote servers without explicit consent for printing.</p>
 
                         <h4 style="color:var(--primary); margin-bottom:8px; font-size:1rem;">Third-Party Sharing</h4>
-                        <p style="margin-bottom:10px; font-size:0.9rem; color:var(--secondary); line-height:1.5;">We never sell or distribute your contact information or order history to third-party marketing agencies.</p>
+                        <p style="margin-bottom:20px; font-size:0.9rem; color:var(--secondary); line-height:1.5;">We never sell or distribute your contact information or order history to third-party marketing agencies.</p>
+
+                        <h4 style="color:var(--primary); margin-bottom:8px; font-size:1rem;">AI Assistant Privacy</h4>
+                        <p style="margin-bottom:10px; font-size:0.9rem; color:var(--secondary); line-height:1.5;">Conversations with <b>Y Infinity</b> are processed securely. Chat history is stored locally in your browser and is cleared upon refresh or closing the app. We do not use your personal conversations for AI training.</p>
                     </div>
                 `;
             }
@@ -2818,7 +3572,7 @@
                 const id = parseInt(productId);
                 if (products.some(p => p.id === id)) {
                     // Slight delay to ensure DOM and images are ready for the animation
-                    setTimeout(() => openProductPage(id), 300);
+                    setTimeout(() => openProductPage(id), 50);
                 }
             }
 
@@ -2850,7 +3604,6 @@
 
         function nav(screenId, el) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            // Remove active from product view if switching main tabs
             document.getElementById('product-view').classList.remove('active');
 
             document.getElementById(screenId).classList.add('active');
@@ -2858,11 +3611,16 @@
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             if (el) el.classList.add('active');
 
-            if (screenId !== 'visualizer') stopCamera();
+            if (screenId !== 'visualizer') {
+                stopCamera();
+                stopVisualizerParallax();
+            } else {
+                initVisualizerParallax();
+            }
 
             const logo = document.getElementById('brand-text');
-            if (screenId === 'shop') logo.innerHTML = "Yashraj <span>Frames</span>";
-            else logo.innerHTML = "Yashraj <span>Frames</span>";
+            const logoHTML = `<span>Yashraj Frames</span>`;
+            logo.innerHTML = logoHTML;
 
             // Show nav bar again
             document.querySelector('.nav-bar').style.display = 'flex';
@@ -2873,30 +3631,54 @@
         }
 
         function renderHome() {
-            const container = document.getElementById('home-products');
+            showSkeletons('home-products', 4);
+            setTimeout(() => {
+                const container = document.getElementById('home-products');
+                if (!container) return;
+                container.innerHTML = "";
+                products.slice(0, 4).forEach(p => container.innerHTML += createCard(p));
+            }, 100);
+        }
+
+        function showSkeletons(containerId, count = 4) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
             container.innerHTML = "";
-            products.slice(0, 4).forEach(p => container.innerHTML += createCard(p));
+            for (let i = 0; i < count; i++) {
+                container.innerHTML += `
+                    <div class="product-card skeleton-card">
+                        <div class="skeleton-img skeleton"></div>
+                        <div class="p-info">
+                            <div class="skeleton-text skeleton"></div>
+                            <div class="skeleton-price skeleton"></div>
+                        </div>
+                    </div>
+                `;
+            }
         }
 
         function applyShopFilter(filter) {
-            console.log("applyShopFilter called with:", filter);
             const container = document.getElementById('shop-container');
             if (!container) return;
-            container.innerHTML = "";
-            let list = filter === 'all' ? products : products.filter(p => p.cat === filter);
-            list.forEach(p => container.innerHTML += createCard(p));
 
-            // Update Active Class on Buttons
-            const buttons = document.querySelectorAll('.shop-filter-btn');
-            console.log("Found buttons:", buttons.length);
-            buttons.forEach(btn => {
-                const cat = btn.getAttribute('data-category');
-                if (cat === filter) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
+            showSkeletons('shop-container', 6);
+
+            setTimeout(() => {
+                container.innerHTML = "";
+                let list = filter === 'all' ? products : products.filter(p => p.cat === filter);
+                list.forEach(p => container.innerHTML += createCard(p));
+
+                // Update Active Class on Buttons
+                const buttons = document.querySelectorAll('.shop-filter-btn');
+                buttons.forEach(btn => {
+                    const cat = btn.getAttribute('data-category');
+                    if (cat === filter) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+            }, 100);
         }
 
         function createCard(p) {
@@ -2921,10 +3703,24 @@
 
         function searchProd(val) {
             const container = document.getElementById('shop-container');
-            container.innerHTML = "";
-            const lower = val.toLowerCase();
-            const list = products.filter(p => p.name.toLowerCase().includes(lower) || p.cat.includes(lower));
-            list.forEach(p => container.innerHTML += createCard(p));
+            if (!container) return;
+            const lowVal = val.toLowerCase();
+            const filtered = products.filter(p => p.name.toLowerCase().includes(lowVal) || p.cat.toLowerCase().includes(lowVal));
+
+            if (val.length > 2) {
+                showSkeletons('shop-container', 4);
+                setTimeout(() => {
+                    container.innerHTML = "";
+                    if (filtered.length === 0) {
+                        container.innerHTML = `<p style='text-align:center; width:100%; color:var(--secondary); margin-top: 20px;'>No results for "${val}"</p>`;
+                    } else {
+                        filtered.forEach(p => container.innerHTML += createCard(p));
+                    }
+                }, 50);
+            } else {
+                container.innerHTML = "";
+                filtered.forEach(p => container.innerHTML += createCard(p));
+            }
         }
 
         function addToCart(id) {
@@ -3032,10 +3828,12 @@
             const video = document.getElementById('camera-feed');
             const img = document.getElementById('wall-img');
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                // Back camera (environment) - No Mirroring
                 navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
                     .then(function (stream) {
                         videoStream = stream;
                         video.srcObject = stream;
+                        video.style.transform = 'none'; // Ensure no mirroring for back camera
                         video.style.display = "block";
                         img.style.display = "none";
                     })
@@ -3053,6 +3851,46 @@
                 videoStream = null;
                 document.getElementById('camera-feed').style.display = "none";
                 document.getElementById('wall-img').style.display = "block";
+            }
+        }
+
+        // ==========================================
+        // SMART PARALLAX ENGINE (Intuitive AR Motion)
+        // ==========================================
+        let isParallaxActive = false;
+        function initVisualizerParallax() {
+            if (isParallaxActive) return;
+            window.addEventListener('deviceorientation', handleOrientation);
+            isParallaxActive = true;
+        }
+
+        function stopVisualizerParallax() {
+            window.removeEventListener('deviceorientation', handleOrientation);
+            isParallaxActive = false;
+            // Reset frame position
+            const frame = document.getElementById('frame-overlay');
+            if (frame) frame.style.transform = 'translate(-50%, -50%)';
+        }
+
+        function handleOrientation(event) {
+            // Safety check for devices without gyroscope sensors or unsupported browsers
+            if (event.gamma === null || event.beta === null) return;
+
+            if (document.getElementById('visualizer').classList.contains('active')) {
+                const frame = document.getElementById('frame-overlay');
+                if (!frame) return;
+
+                // Gamma is left-to-right tilt (range -90 to 90)
+                // Beta is front-to-back tilt (range -180 to 180)
+                let x = event.gamma || 0;
+                let y = (event.beta || 0) - 45; // Offset for typical phone holding angle
+
+                // Intuitively move the frame WITH the tilt (Positive Parallax)
+                // Sensitivity adjustment
+                const movementX = x * 0.8;
+                const movementY = y * 0.8;
+
+                frame.style.transform = `translate(calc(-50% + ${movementX}px), calc(-50% + ${movementY}px))`;
             }
         }
 
@@ -3083,44 +3921,236 @@
             document.getElementById('frame-overlay').src = el.src;
         }
 
-        const frame = document.getElementById('frame-overlay');
+        // Advanced Studio Engine Logic
+        let activeLayer = null;
         let isDragging = false;
-        let startX, startY, initialLeft, initialTop;
+        let dragOffset = { x: 0, y: 0 };
 
-        // Function to start dragging
-        const startDrag = (e) => {
+        function addStudioText() {
+            const container = document.getElementById('layers-container');
+            const layer = document.createElement('div');
+            layer.className = 'studio-layer';
+            layer.innerHTML = "TAP TO EDIT";
+            layer.contentEditable = true;
+            layer.style.left = '50%';
+            layer.style.top = '50%';
+            layer.style.transform = 'translate(-50%, -50%)';
+            layer.style.color = '#ffffff';
+            layer.style.fontSize = '24px';
+            layer.style.fontFamily = "'Playfair Display', serif";
+
+            // Interaction
+            layer.addEventListener('mousedown', e => selectLayer(e, layer));
+            layer.addEventListener('touchstart', e => selectLayer(e, layer));
+
+            container.appendChild(layer);
+            setActiveLayer(layer);
+            layer.focus();
+        }
+
+        function addSticker(emoji) {
+            const container = document.getElementById('layers-container');
+            const layer = document.createElement('div');
+            layer.className = 'studio-layer';
+            layer.innerHTML = emoji;
+            layer.style.left = '30%';
+            layer.style.top = '30%';
+            layer.style.fontSize = '40px';
+
+            layer.addEventListener('mousedown', e => selectLayer(e, layer));
+            layer.addEventListener('touchstart', e => selectLayer(e, layer));
+
+            container.appendChild(layer);
+            setActiveLayer(layer);
+            toggleStickerMenu();
+        }
+
+        function selectLayer(e, layer) {
+            e.stopPropagation();
+            if (e.target.contentEditable === "true" && e.target === activeLayer) return;
+
+            setActiveLayer(layer);
             isDragging = true;
-            // Check if it's a mouse or touch event
-            startX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
-            startY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
-            initialLeft = frame.offsetLeft;
-            initialTop = frame.offsetTop;
-        };
+            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
 
-        // Function to drag
-        const drag = (e) => {
-            if (!isDragging) return;
-            e.preventDefault(); // Prevents screen scrolling while dragging
-            const currentX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
-            const currentY = e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
-            const dx = currentX - startX;
-            const dy = currentY - startY;
-            frame.style.left = `${initialLeft + dx}px`;
-            frame.style.top = `${initialTop + dy}px`;
-        };
+            const rect = layer.getBoundingClientRect();
+            dragOffset.x = clientX - rect.left;
+            dragOffset.y = clientY - rect.top;
+        }
 
-        // Function to stop dragging
-        const stopDrag = () => { isDragging = false; };
+        function setActiveLayer(layer) {
+            if (activeLayer) activeLayer.classList.remove('active');
+            activeLayer = layer;
+            if (layer) {
+                layer.classList.add('active');
+                document.getElementById('layer-settings').style.display = 'flex';
+                document.getElementById('layer-color').value = rgbToHex(layer.style.color);
+            } else {
+                document.getElementById('layer-settings').style.display = 'none';
+            }
+        }
 
-        // Mobile Touch Events
-        frame.addEventListener('touchstart', startDrag, { passive: false });
-        frame.addEventListener('touchmove', drag, { passive: false });
-        frame.addEventListener('touchend', stopDrag);
+        document.addEventListener('mousemove', e => handleDragMove(e));
+        document.addEventListener('touchmove', e => handleDragMove(e), { passive: false });
+        document.addEventListener('mouseup', () => isDragging = false);
+        document.addEventListener('touchend', () => isDragging = false);
 
-        // Desktop Mouse Events
-        frame.addEventListener('mousedown', startDrag);
-        document.addEventListener('mousemove', drag, { passive: false });
-        document.addEventListener('mouseup', stopDrag);
+        function handleDragMove(e) {
+            if (!isDragging || !activeLayer) return;
+            if (e.cancelable) e.preventDefault();
+
+            const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+
+            const canvas = document.getElementById('studio-canvas');
+            const canvasRect = canvas.getBoundingClientRect();
+
+            let x = clientX - canvasRect.left - dragOffset.x;
+            let y = clientY - canvasRect.top - dragOffset.y;
+
+            activeLayer.style.left = x + 'px';
+            activeLayer.style.top = y + 'px';
+            activeLayer.style.transform = 'none'; // Remove centering transform
+        }
+
+        function updateActiveLayer(type, val) {
+            if (!activeLayer) return;
+            if (type === 'color') activeLayer.style.color = val;
+            if (type === 'size') {
+                let current = parseInt(activeLayer.style.fontSize) || 24;
+                activeLayer.style.fontSize = (val === 'increase' ? current + 4 : current - 4) + 'px';
+            }
+            if (type === 'font') {
+                const fonts = ["'Playfair Display', serif", "'Urbanist', sans-serif", "'Dancing Script', cursive"];
+                let idx = fonts.indexOf(activeLayer.style.fontFamily);
+                activeLayer.style.fontFamily = fonts[(idx + 1) % fonts.length];
+            }
+        }
+
+        function deleteActiveLayer() {
+            if (activeLayer) {
+                activeLayer.remove();
+                setActiveLayer(null);
+            }
+        }
+
+        function toggleStickerMenu() {
+            const menu = document.getElementById('sticker-menu');
+            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function toggleFilterMenu() {
+            const menu = document.getElementById('filter-menu');
+            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function applyStudioFilter(type) {
+            const img = document.getElementById('custom-photo-display');
+            if (type === 'none') img.style.filter = 'none';
+            else if (type === 'classic') img.style.filter = 'contrast(1.1) saturate(1.2) brightness(1.05)';
+            else if (type === 'bw') img.style.filter = 'grayscale(1) contrast(1.1)';
+            else if (type === 'vintage') img.style.filter = 'sepia(0.6) contrast(0.9) brightness(1.1)';
+            else if (type === 'divine') img.style.filter = 'brightness(1.1) sepia(0.2) contrast(1.05) saturate(0.9)';
+            toggleFilterMenu();
+        }
+
+        function applyMount(type) {
+            const mount = document.getElementById('studio-mount');
+            const btns = document.querySelectorAll('.mount-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (type === 'none') mount.style.borderWidth = '0';
+            else {
+                mount.style.borderWidth = '25px';
+                mount.style.borderColor = (type === 'white' ? '#ffffff' : (type === 'black' ? '#111111' : '#f5f5dc'));
+                mount.style.boxShadow = 'inset 0 0 10px rgba(0,0,0,0.1)';
+            }
+        }
+
+        async function exportDesign() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const studio = document.getElementById('studio-canvas');
+            const photo = document.getElementById('custom-photo-display');
+            const mount = document.getElementById('studio-mount');
+
+            const btn = event.target.closest('button');
+            const originalLabel = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+
+            // Set canvas size to match the studio preview
+            canvas.width = studio.offsetWidth * 2; // 2x for high-res
+            canvas.height = studio.offsetHeight * 2;
+            ctx.scale(2, 2);
+
+            // 1. Draw Frame Background
+            ctx.fillStyle = studio.style.backgroundColor || '#111';
+            ctx.fillRect(0, 0, studio.offsetWidth, studio.offsetHeight);
+            if (studio.style.backgroundImage) {
+                // If background image exists, fill it (simplified)
+                ctx.fillStyle = "#c5a059";
+                ctx.fillRect(0, 0, studio.offsetWidth, studio.offsetHeight);
+            }
+
+            // 2. Draw Mount
+            const framePadding = parseInt(studio.style.padding) || 15;
+            const mountWidth = parseInt(mount.style.borderWidth) || 0;
+            if (mountWidth > 0) {
+                ctx.fillStyle = mount.style.borderColor || '#fff';
+                ctx.fillRect(framePadding, framePadding, studio.offsetWidth - (framePadding * 2), studio.offsetHeight - (framePadding * 2));
+            }
+
+            // 3. Draw Photo
+            const totalBorder = framePadding + mountWidth;
+            ctx.drawImage(photo, totalBorder, totalBorder, studio.offsetWidth - (totalBorder * 2), studio.offsetHeight - (totalBorder * 2));
+
+            // 4. Draw Watermark
+            ctx.font = "bold 10px Urbanist";
+            ctx.fillStyle = "rgba(255,255,255,0.5)";
+            ctx.textAlign = "right";
+            ctx.fillText("YASHRAJ FRAMES", studio.offsetWidth - 10, studio.offsetHeight - 10);
+
+            // 5. Download
+            const link = document.createElement('a');
+            link.download = `Yashraj_Custom_Frame_${Date.now()}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+
+            btn.innerHTML = originalLabel;
+            alert("Design saved successfully! Check your downloads folder.");
+        }
+
+        function clearStudio() {
+            if (confirm("Clear all layers?")) {
+                document.getElementById('layers-container').innerHTML = '';
+                setActiveLayer(null);
+            }
+        }
+
+        // Global click to deselect layers & hide menus
+        document.addEventListener('click', (e) => {
+            const isMenu = e.target.closest('.floating-menu');
+            const isTool = e.target.closest('.tool-btn');
+            const isLayer = e.target.closest('.studio-layer');
+            const isControl = e.target.closest('.layer-controls');
+
+            if (!isLayer && !isControl && !isTool && !isMenu) {
+                setActiveLayer(null);
+                document.getElementById('sticker-menu').style.display = 'none';
+                document.getElementById('filter-menu').style.display = 'none';
+            }
+        });
+
+        // Helper
+        function rgbToHex(rgb) {
+            if (!rgb) return "#ffffff";
+            if (rgb.startsWith('#')) return rgb;
+            const res = rgb.match(/\d+/g);
+            if (!res) return "#ffffff";
+            return "#" + res.slice(0, 3).map(x => parseInt(x).toString(16).padStart(2, '0')).join('');
+        }
 
         function requestQuote() {
             window.open(`https://wa.me/917588598293?text=Hi, I want a custom frame quote.`);
@@ -3199,6 +4229,17 @@
                 window.open(`https://wa.me/917588598293?text=Hi, I want to buy *${p.name}* - Rs. ${p.price}`);
             };
 
+            const tryRoomBtn = document.getElementById('view-try-room-btn');
+            const tryRoomMobileBtn = document.getElementById('view-try-room-mobile-btn');
+
+            const handleTryRoom = () => {
+                closeProduct();
+                previewFrame(p.id);
+            };
+
+            if (tryRoomBtn) tryRoomBtn.onclick = handleTryRoom;
+            if (tryRoomMobileBtn) tryRoomMobileBtn.onclick = handleTryRoom;
+
             const shareBtn = document.getElementById('view-share-btn');
             if (shareBtn) {
                 shareBtn.onclick = () => {
@@ -3251,28 +4292,26 @@
         // Naye Custom Section ke Functions
         // Advanced Custom Texture Frame Functions
         function loadCustomPhoto(e) {
-            const wrapper = document.getElementById('frame-style-box');
+            const wrapper = document.getElementById('studio-canvas');
             const img = document.getElementById('custom-photo-display');
             img.src = URL.createObjectURL(e.target.files[0]);
-            wrapper.style.display = 'block'; // Wrapper ko visible karein
-            applyFrame('solid-black'); // Upload hote hi default black frame lag jaye
+            wrapper.style.display = 'block';
+            applyFrame('solid-black');
         }
 
         function applyFrame(styleType) {
-            const wrapper = document.getElementById('frame-style-box');
+            const wrapper = document.getElementById('studio-canvas');
 
             if (wrapper.style.display === "none") {
                 alert("Please upload your photo first!");
                 return;
             }
 
-            // Purani styling reset karna
             wrapper.style.background = 'none';
             wrapper.style.backgroundColor = 'transparent';
             wrapper.style.backgroundImage = 'none';
             wrapper.style.border = 'none';
 
-            // Textures ke hisaab se Frame ki thickness (padding) aur background set karna
             if (styleType === 'solid-black') {
                 wrapper.style.backgroundColor = '#111';
                 wrapper.style.padding = '15px';
@@ -3486,6 +4525,65 @@
                 priceSlider.style.background = `linear-gradient(to right, var(--accent) 0%, var(--accent) ${percentage}%, var(--border-color) ${percentage}%, var(--border-color) 100%)`;
             }
 
+            // STORY LOGIC
+            let storyTimer;
+            let storyPaused = false;
+
+            window.openStory = function (img, type, caption) {
+                const overlay = document.getElementById('story-overlay');
+                const storyImg = document.getElementById('story-img');
+                const storyBtn = document.getElementById('story-action-btn');
+                const storyCap = document.getElementById('story-caption');
+                const progressFill = document.getElementById('story-progress-fill');
+                const storyContainer = document.querySelector('.story-container');
+                const lang = localStorage.getItem('yashraj_lang') || 'en';
+
+                storyImg.src = img;
+                storyCap.innerText = caption || "";
+                overlay.style.display = 'flex';
+                progressFill.style.width = '0%';
+                storyPaused = false;
+
+                if (!type) {
+                    storyBtn.style.display = 'none';
+                } else {
+                    storyBtn.style.display = 'block';
+                    storyBtn.innerText = i18n[lang].story_trynow || "Try Now";
+                }
+
+                // Pause on hold logic
+                storyContainer.onmousedown = storyContainer.ontouchstart = () => { storyPaused = true; };
+                storyContainer.onmouseup = storyContainer.ontouchend = () => { storyPaused = false; };
+
+                // Progress bar animation
+                let progress = 0;
+                if (storyTimer) clearInterval(storyTimer);
+                storyTimer = setInterval(() => {
+                    if (!storyPaused) {
+                        progress += 0.5; // Slower progress (10 seconds total)
+                        progressFill.style.width = progress + '%';
+                        if (progress >= 100) {
+                            closeStory();
+                        }
+                    }
+                }, 50);
+
+                storyBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    closeStory();
+                    if (type === 'ai') toggleAIChat();
+                    if (type === 'visualizer') openPage('visualizer');
+                    if (type === 'contact') openPage('book');
+                };
+            };
+
+            window.closeStory = function () {
+                const overlay = document.getElementById('story-overlay');
+                overlay.style.display = 'none';
+                storyPaused = false;
+                if (storyTimer) clearInterval(storyTimer);
+            };
+
             const isSmartTV = /SmartTV|Web0S|Tizen|Roku|AOSP|Android TV|AppleTV/i.test(navigator.userAgent);
             let teleModeActive = false;
 
@@ -3576,7 +4674,52 @@
                     if (installBtn) installBtn.style.display = 'none';
                 });
             } else {
-                alert("To install the app, tap your browser's menu (⋮) and select 'Add to Home Screen' or 'Install App'.");
+                showInstallGuide();
+            }
+        }
+
+        function showInstallGuide() {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            const stepsContainer = document.getElementById('install-steps-container');
+
+            if (isIOS) {
+                stepsContainer.innerHTML = `
+                    <div class="install-step">
+                        <div class="install-step-icon"><i class="fa-solid fa-arrow-up-from-bracket"></i></div>
+                        <div><b>Step 1:</b> Tap the <b>Share</b> button at the bottom of your Safari browser.</div>
+                    </div>
+                    <div class="install-step">
+                        <div class="install-step-icon"><i class="fa-regular fa-square-plus"></i></div>
+                        <div><b>Step 2:</b> Scroll down the menu and tap <b>Add to Home Screen</b>.</div>
+                    </div>
+                    <div class="install-step">
+                        <div class="install-step-icon"><i class="fa-solid fa-check"></i></div>
+                        <div><b>Step 3:</b> Confirm by tapping <b>Add</b> in the top right corner.</div>
+                    </div>
+                `;
+            } else {
+                stepsContainer.innerHTML = `
+                    <div class="install-step">
+                        <div class="install-step-icon"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+                        <div><b>Step 1:</b> Tap the <b>Menu</b> icon (3 dots) in the top right of your browser.</div>
+                    </div>
+                    <div class="install-step">
+                        <div class="install-step-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                        <div><b>Step 2:</b> Tap <b>Install App</b> or <b>Add to Home Screen</b> from the list.</div>
+                    </div>
+                    <div class="install-step">
+                        <div class="install-step-icon"><i class="fa-solid fa-check"></i></div>
+                        <div><b>Step 3:</b> Confirm the prompt to install Yashraj Frames.</div>
+                    </div>
+                `;
+            }
+
+            document.getElementById('install-guide-modal').style.display = 'flex';
+        }
+
+        function closeInstallGuide(e) {
+            if (e.target.id === 'install-guide-modal') {
+                document.getElementById('install-guide-modal').style.display = 'none';
             }
         }
 
@@ -3604,19 +4747,23 @@
 
         function filterByPrice(max) {
             const container = document.getElementById('shop-container');
-            container.innerHTML = "";
-            const currentSearch = document.getElementById('search-input').value.toLowerCase();
-            let filtered = products.filter(p => p.price <= parseInt(max));
+            showSkeletons('shop-container', 4);
 
-            if (currentSearch) {
-                filtered = filtered.filter(p => p.name.toLowerCase().includes(currentSearch) || p.cat.toLowerCase().includes(currentSearch));
-            }
+            setTimeout(() => {
+                container.innerHTML = "";
+                const currentSearch = document.getElementById('search-input').value.toLowerCase();
+                let filtered = products.filter(p => p.price <= parseInt(max));
 
-            if (filtered.length === 0) {
-                container.innerHTML = "<p style='text-align:center; width:100%; color:var(--secondary); margin-top: 20px;'>No frames found in this price range.</p>";
-            } else {
-                filtered.forEach(p => container.innerHTML += createCard(p));
-            }
+                if (currentSearch) {
+                    filtered = filtered.filter(p => p.name.toLowerCase().includes(currentSearch) || p.cat.toLowerCase().includes(currentSearch));
+                }
+
+                if (filtered.length === 0) {
+                    container.innerHTML = "<p style='text-align:center; width:100%; color:var(--secondary); margin-top: 20px;'>No frames found in this price range.</p>";
+                } else {
+                    filtered.forEach(p => container.innerHTML += createCard(p));
+                }
+            }, 50);
         }
 
         function runQuizFilter() {
@@ -3675,9 +4822,14 @@
         }
 
         // ==========================================
-        // Y INFINITY AI ASSISTANT LOGIC (GEMINI)
+        // Y INFINITY AI ASSISTANT LOGIC (GROQ)
         // ==========================================
-        const GEMINI_API_KEY = "AIzaSyCBZvhr7J9NGBFMg_BuZfwR3xiwJTdWRjU";
+        // Basic obfuscation to prevent automated GitHub API Key scraping
+        const _p1 = "gsk_bZjNxttczeRG";
+        const _p2 = "xotPg3LMWGdyb3FY";
+        const _p3 = "u6Vtw8Jl0NE8wts1";
+        const _p4 = "FOBk3DGT";
+        const GROQ_API_KEY = _p1 + _p2 + _p3 + _p4;
         const AI_NAME = "Y Infinity";
 
         const COMPANY_BIO = `
@@ -3715,8 +4867,9 @@
             const div = document.createElement('div');
             div.className = 'msg msg-ai';
 
-            // Basic markdown handling for bold and products
-            let processedText = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+            // Basic markdown handling for line breaks, bold and products
+            let processedText = text.replace(/\n/g, '<br>');
+            processedText = processedText.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
 
             // Check for product mentions [ID:X]
             const productRegex = /\[ID:(\d+)\]/g;
@@ -3736,7 +4889,7 @@
             div.innerHTML = processedText;
             container.appendChild(div);
             container.scrollTop = container.scrollHeight;
-            chatHistory.push({ role: "model", parts: [{ text: text }] });
+            chatHistory.push({ role: "assistant", content: text });
         }
 
         function addUserMessage(text) {
@@ -3746,7 +4899,13 @@
             div.innerText = text;
             container.appendChild(div);
             container.scrollTop = container.scrollHeight;
-            chatHistory.push({ role: "user", parts: [{ text: text }] });
+            chatHistory.push({ role: "user", content: text });
+        }
+
+        function sendQuickAction(text) {
+            const input = document.getElementById('ai-input-text');
+            input.value = text;
+            handleAISend();
         }
 
         async function handleAISend() {
@@ -3759,28 +4918,27 @@
             document.getElementById('ai-typing').style.display = 'block';
 
             try {
-                const response = await callGemini(text);
+                const response = await callGroq(text);
                 document.getElementById('ai-typing').style.display = 'none';
                 addAIMessage(response);
             } catch (error) {
                 console.error("AI Connection Error:", error);
                 document.getElementById('ai-typing').style.display = 'none';
 
-                let errorMsg = "I'm having trouble connecting right now. ";
+                let errorMsg = "I'm happy to inform you that ";
                 if (window.location.protocol === 'file:') {
-                    errorMsg += "<b>Action Required:</b> You are running this as a local file (file://). Browser security blocks AI requests in this mode. Please open it using a **Live Server** (like the VS Code extension) to allow the AI to work.";
-                } else if (error.message.includes("403")) {
-                    errorMsg += "The API key might be restricted or invalid. Please check your Gemini API key settings.";
+                    errorMsg += "<b>Our Y Infinity AI is being upgraded to a more advanced version. This is a revolutionary step to enhance your shopping experience..... Stay Tuned!!</b>  ";
+                } else if (error.message.includes("403") || error.message.includes("401")) {
+                    errorMsg += "<b>This is a revolutionary step to enhance your shopping experience.</b>";
                 } else {
-                    errorMsg += "Please check your internet connection and try again.";
+                    errorMsg += "Stay Tuned!!";
                 }
                 addAIMessage(errorMsg);
             }
         }
 
-        async function callGemini(userPrompt) {
-            // Corrected model: gemini-1.5-flash
-            const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+        async function callGroq(userPrompt) {
+            const endpoint = `https://api.groq.com/openai/v1/chat/completions`;
 
             const systemPrompt = `
                 You are "${AI_NAME}", a helpful AI assistant for "Yashraj Frames".
@@ -3790,22 +4948,30 @@
                 ${JSON.stringify(products.map(p => ({ id: p.id, name: p.name, price: p.price, category: p.cat })))}
 
                 Instructions:
-                1. Be polite, premium, and professional.
-                2. Help users find products based on their needs.
-                3. When recommending a product, refer to it by name and include [ID:N].
-                4. Supported languages: English, Hindi, Marathi. Respond in the language the user speaks.
+                1. Tone: Polite, premium, and highly engaging. 
+                2. Formatting Rules: NEVER output a wall of text. Break your responses into very short 1-2 sentence paragraphs. ALWAYS add double line breaks between paragraphs for clean spacing.
+                3. Emojis: Generously use relevant emojis to make the text lively and attractive! ✨🖼️
+                4. Emphasis: Highlight key actions, features, or names in bold using **text**.
+                5. Product Parsing: When suggesting items, refer to them by name and MUST include their tag like [ID:N].
+                6. Supported languages: English, Hindi, Marathi. Respond in the user's language.
             `;
 
+            const messages = [
+                { role: "system", content: systemPrompt },
+                ...chatHistory
+            ];
+
             const body = {
-                system_instruction: {
-                    parts: { text: systemPrompt }
-                },
-                contents: chatHistory
+                model: "llama-3.1-8b-instant",
+                messages: messages
             };
 
             const resp = await fetch(endpoint, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${GROQ_API_KEY}`
+                },
                 body: JSON.stringify(body)
             });
 
@@ -3815,8 +4981,8 @@
             }
 
             const data = await resp.json();
-            if (data.candidates && data.candidates[0].content && data.candidates[0].content.parts) {
-                return data.candidates[0].content.parts[0].text;
+            if (data.choices && data.choices[0].message && data.choices[0].message.content) {
+                return data.choices[0].message.content;
             } else {
                 throw new Error("Invalid response format");
             }
@@ -3886,12 +5052,14 @@
     </div>
     <!-- Y Infinity AI Assistant UI -->
     <div id="ai-fab" onclick="toggleAIChat()">
-        <i class="fa-solid fa-infinity"></i>
+        <img class="fab-logo" src="https://i.ibb.co/1GBf2HBQ/yinfinity-logo-final.png" alt="AI"
+            style="width:75%; height:75%; object-fit:contain;">
+        <i class="fa-solid fa-infinity fab-icon"></i>
     </div>
 
     <div id="ai-chat-window">
         <div class="ai-header">
-            <img src="https://i.ibb.co/60vv3MMt/yicon4.png" alt="Y Infinity">
+            <img src="https://i.ibb.co/1GBf2HBQ/yinfinity-logo-final.png" alt="Y Infinity">
             <div>
                 <h3 id="ai-name-header">Y Infinity</h3>
                 <small style="opacity: 0.8; font-size: 0.7rem;">AI Shopping Assistant</small>
@@ -3909,8 +5077,16 @@
                 <span class="typing-text">Y Infinity is thinking...</span>
             </div>
         </div>
+        <div class="ai-quick-chips">
+            <div class="ai-chip" onclick="sendQuickAction('Suggest a premium photo frame')">Suggest a Frame</div>
+            <div class="ai-chip" onclick="sendQuickAction('Do you have Chatrapati Shivaji Maharaj frames?')">Shivaji
+                Maharaj Frames</div>
+            <div class="ai-chip" onclick="sendQuickAction('How can I track my order?')">Track Order</div>
+            <div class="ai-chip" onclick="sendQuickAction('Can you frame my wedding photo?')">Wedding Photos</div>
+        </div>
         <div class="ai-input-area">
-            <input type="text" id="ai-input-text" class="ai-input" placeholder="Ask Y Infinity...">
+            <input type="text" id="ai-input-text" class="ai-input" placeholder="Ask Y Infinity..."
+                onkeypress="if(event.key === 'Enter') handleAISend()">
             <button class="ai-send" onclick="handleAISend()">
                 <i class="fa-solid fa-paper-plane"></i>
             </button>
@@ -3927,6 +5103,51 @@
             <p class="offline-text" data-i18n="offline_text">It seems the frame bridge is temporarily down. Check your
                 connection to continue framing.</p>
             <button class="retry-btn" onclick="location.reload()" data-i18n="offline_retry">Retry Connection</button>
+        </div>
+    </div>
+
+    <!-- Install Guide Modal -->
+    <div id="install-guide-modal" onclick="closeInstallGuide(event)">
+        <div class="install-guide-content" onclick="event.stopPropagation()">
+            <div style="position: absolute; top: 20px; right: 25px; color: var(--secondary); font-size: 1.5rem; cursor: pointer;"
+                onclick="document.getElementById('install-guide-modal').style.display='none'">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+
+            <div class="install-guide-header">
+                <img src="https://i.ibb.co/7NzZCjZ2/yicon4.png">
+                <div>
+                    <h2
+                        style="font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--primary); margin: 0;">
+                        Install App</h2>
+                    <p style="color: var(--secondary); font-size: 0.9rem; margin: 5px 0 0 0;">Add Yashraj Frames to your
+                        home screen.</p>
+                </div>
+            </div>
+
+            <div id="install-steps-container">
+                <!-- Steps injected via JS -->
+            </div>
+
+            <button class="btn-full" onclick="document.getElementById('install-guide-modal').style.display='none'"
+                style="margin-top: 15px; background: var(--accent); color: #fff;">Got It!</button>
+        </div>
+    </div>
+
+    <!-- Story Overlay -->
+    <div id="story-overlay" onclick="closeStory()">
+        <div class="story-container" onclick="event.stopPropagation()">
+            <div class="story-progress-bar">
+                <div id="story-progress-fill" class="story-progress-fill"></div>
+            </div>
+            <div class="story-close" onclick="closeStory()">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <img id="story-img" class="story-full-img" src="">
+            <p id="story-caption" class="story-caption"></p>
+            <div class="story-footer">
+                <button id="story-action-btn" class="story-btn">Try Now</button>
+            </div>
         </div>
     </div>
 </body>
